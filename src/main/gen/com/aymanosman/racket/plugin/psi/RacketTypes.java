@@ -10,9 +10,11 @@ public interface RacketTypes {
 
   IElementType ATOM = new RacketElementType("ATOM");
   IElementType FORM = new RacketElementType("FORM");
+  IElementType LANG_LINE = new RacketElementType("LANG_LINE");
 
   IElementType COMMENT = new RacketTokenType("COMMENT");
   IElementType CRLF = new RacketTokenType("CRLF");
+  IElementType HASH_LANG = new RacketTokenType("HASH_LANG");
   IElementType IDENTIFIER = new RacketTokenType("IDENTIFIER");
   IElementType KEYWORD = new RacketTokenType("KEYWORD");
   IElementType LPAREN = new RacketTokenType("LPAREN");
@@ -26,6 +28,9 @@ public interface RacketTypes {
       }
       else if (type == FORM) {
         return new RacketFormImpl(node);
+      }
+      else if (type == LANG_LINE) {
+        return new RacketLangLineImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

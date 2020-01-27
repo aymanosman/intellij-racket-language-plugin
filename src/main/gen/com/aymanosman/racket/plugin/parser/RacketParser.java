@@ -85,13 +85,37 @@ public class RacketParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Item_*
+  // HASH_LANG IDENTIFIER
+  public static boolean LangLine(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "LangLine")) return false;
+    if (!nextTokenIs(b, HASH_LANG)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, HASH_LANG, IDENTIFIER);
+    exit_section_(b, m, LANG_LINE, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // LangLine Item_*
   static boolean RacketFile(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RacketFile")) return false;
+    if (!nextTokenIs(b, HASH_LANG)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = LangLine(b, l + 1);
+    r = r && RacketFile_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // Item_*
+  private static boolean RacketFile_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "RacketFile_1")) return false;
     while (true) {
       int c = current_position_(b);
       if (!Item_(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "RacketFile", c)) break;
+      if (!empty_element_parsed_guard_(b, "RacketFile_1", c)) break;
     }
     return true;
   }
