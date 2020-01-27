@@ -23,14 +23,21 @@ END_OF_LINE_COMMENT=(";")[^\r\n]*
 LPAREN="("
 RPAREN=")"
 //IDENTIFIER_CHARACTER=[^'\ \n\t\f\\\(\)]
-IDENTIFIER_CHARACTER=[a-z]
+IDENTIFIER_CHARACTER=[a-z]*
+// Identifier = [:jletter:] [:jletterdigit:]*
+// DecIntegerLiteral = 0 | [1-9][0-9]*
 //KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 
+%state STRING
 %state WAITING_VALUE
 
 %%
 
-<YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return RacketTypes.COMMENT; }
+/* keywords */
+
+<YYINITIAL> "define" { return RacketTypes.KEYWORD; }
+
+<YYINITIAL> {END_OF_LINE_COMMENT} { return RacketTypes.COMMENT; }
 
 //<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return RacketTypes.KEY; }
 

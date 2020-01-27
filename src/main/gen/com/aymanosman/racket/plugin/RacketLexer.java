@@ -23,7 +23,8 @@ class RacketLexer implements FlexLexer {
 
   /** lexical states */
   public static final int YYINITIAL = 0;
-  public static final int WAITING_VALUE = 2;
+  public static final int STRING = 2;
+  public static final int WAITING_VALUE = 4;
 
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
@@ -32,7 +33,7 @@ class RacketLexer implements FlexLexer {
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = { 
-     0,  0,  1, 1
+     0,  0,  1,  1,  2, 2
   };
 
   /** 
@@ -54,8 +55,8 @@ class RacketLexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 320 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\4\1\2\1\1\1\5\1\3\22\0\1\4\7\0\1\7\1\10\21\0\1\6\45\0\32\11\12\0\1"+
-    "\1\242\0\2\1\26\0");
+    "\11\0\1\4\1\2\1\1\1\5\1\3\22\0\1\4\7\0\1\7\1\10\21\0\1\6\45\0\3\11\1\12\1"+
+    "\13\1\14\2\11\1\15\4\11\1\16\14\11\12\0\1\1\242\0\2\1\26\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -63,10 +64,11 @@ class RacketLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\2\0\1\1\1\2\1\3\1\4\2\5\1\6\1\7";
+    "\2\0\1\1\1\2\1\3\1\4\1\5\1\2\2\6"+
+    "\1\7\1\1\4\0\1\10";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[10];
+    int [] result = new int[17];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -91,11 +93,12 @@ class RacketLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\12\0\24\0\36\0\50\0\24\0\36\0\62"+
-    "\0\24\0\74";
+    "\0\0\0\17\0\36\0\55\0\74\0\113\0\55\0\132"+
+    "\0\74\0\151\0\55\0\170\0\207\0\226\0\245\0\264"+
+    "\0\55";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[10];
+    int [] result = new int[17];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -118,13 +121,15 @@ class RacketLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\3\5\4\1\5\1\6\3\3\1\4\1\7\1\4"+
-    "\1\10\1\7\2\3\1\11\1\12\13\0\5\4\4\0"+
-    "\2\5\2\0\6\5\1\0\1\4\1\10\1\4\2\10"+
-    "\15\0\1\12";
+    "\1\4\5\5\1\6\1\7\2\4\1\10\5\4\5\5"+
+    "\12\4\1\5\1\11\1\5\1\12\1\11\2\4\1\13"+
+    "\6\14\20\0\5\5\11\0\2\6\2\0\13\6\13\0"+
+    "\1\15\4\0\1\5\1\12\1\5\2\12\22\0\6\14"+
+    "\14\0\1\16\17\0\1\17\17\0\1\20\13\0\1\21"+
+    "\3\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[70];
+    int [] result = new int[195];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -162,10 +167,11 @@ class RacketLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\0\1\11\2\1\1\11\2\1\1\11\1\1";
+    "\2\0\1\1\1\11\2\1\1\11\3\1\1\11\1\1"+
+    "\4\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[10];
+    int [] result = new int[17];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -479,40 +485,45 @@ class RacketLexer implements FlexLexer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { return TokenType.BAD_CHARACTER;
-            } 
-            // fall through
-          case 8: break;
-          case 2: 
-            { yybegin(YYINITIAL); return TokenType.WHITE_SPACE;
-            } 
-            // fall through
-          case 9: break;
-          case 3: 
-            { yybegin(YYINITIAL); return RacketTypes.COMMENT;
-            } 
-            // fall through
-          case 10: break;
-          case 4: 
-            { yybegin(WAITING_VALUE); return RacketTypes.LPAREN;
-            } 
-            // fall through
-          case 11: break;
-          case 5: 
-            { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE;
-            } 
-            // fall through
-          case 12: break;
-          case 6: 
-            { yybegin(YYINITIAL); return RacketTypes.RPAREN;
-            } 
-            // fall through
-          case 13: break;
-          case 7: 
             { yybegin(WAITING_VALUE); return RacketTypes.IDENTIFIER;
             } 
             // fall through
+          case 9: break;
+          case 2: 
+            { return TokenType.BAD_CHARACTER;
+            } 
+            // fall through
+          case 10: break;
+          case 3: 
+            { yybegin(YYINITIAL); return TokenType.WHITE_SPACE;
+            } 
+            // fall through
+          case 11: break;
+          case 4: 
+            { yybegin(YYINITIAL); return RacketTypes.COMMENT;
+            } 
+            // fall through
+          case 12: break;
+          case 5: 
+            { yybegin(WAITING_VALUE); return RacketTypes.LPAREN;
+            } 
+            // fall through
+          case 13: break;
+          case 6: 
+            { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE;
+            } 
+            // fall through
           case 14: break;
+          case 7: 
+            { yybegin(YYINITIAL); return RacketTypes.RPAREN;
+            } 
+            // fall through
+          case 15: break;
+          case 8: 
+            { return RacketTypes.KEYWORD;
+            } 
+            // fall through
+          case 16: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

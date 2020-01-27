@@ -14,6 +14,8 @@ import java.util.Map;
 public class RacketColorSettingsPage implements ColorSettingsPage {
     public static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Identifier", RacketSyntaxHighlighter.IDENTIFIER),
+            new AttributesDescriptor("Keyword", RacketSyntaxHighlighter.KEYWORD),
+            new AttributesDescriptor("Comment", RacketSyntaxHighlighter.COMMENT),
     };
 
     @Nullable
