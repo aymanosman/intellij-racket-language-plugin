@@ -20,6 +20,8 @@
                   extensions="rkt" />
         <lang.parserDefinition language="Racket"
                                implementationClass="com.aymanosman.racket.plugin.RacketParserDefinition" />
+        <lang.syntaxHighlighterFactory language="Racket"
+                                       implementationClass="com.aymanosman.racket.plugin.RacketSyntaxHighlighterFactory" />
     </extensions>
 
     <actions>

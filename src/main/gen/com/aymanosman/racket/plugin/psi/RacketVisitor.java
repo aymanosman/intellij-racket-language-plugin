@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public class RacketVisitor extends PsiElementVisitor {
 
-  public void visitProperty(@NotNull RacketProperty o) {
+  public void visitForm(@NotNull RacketForm o) {
     visitPsiElement(o);
   }
 

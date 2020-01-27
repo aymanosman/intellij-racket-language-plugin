@@ -11,14 +11,14 @@ import static com.aymanosman.racket.plugin.psi.RacketTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.aymanosman.racket.plugin.psi.*;
 
-public class RacketPropertyImpl extends ASTWrapperPsiElement implements RacketProperty {
+public class RacketFormImpl extends ASTWrapperPsiElement implements RacketForm {
 
-  public RacketPropertyImpl(@NotNull ASTNode node) {
+  public RacketFormImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RacketVisitor visitor) {
-    visitor.visitProperty(this);
+    visitor.visitForm(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {

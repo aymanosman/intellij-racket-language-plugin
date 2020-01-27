@@ -15,6 +15,9 @@
 
 RacketFile ::= Item_*
 
-private Item_ ::= (Property | COMMENT | CRLF)
+//private Item_ ::= (Property | COMMENT | CRLF)
+private Item_ ::= (Form | COMMENT | CRLF)
 
-Property ::= (KEY? SEPARATOR VALUE?) | KEY
+Form ::= LPAREN RPAREN
+
+//Property ::= (KEY? SEPARATOR VALUE?) | KEY
