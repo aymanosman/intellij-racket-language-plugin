@@ -36,15 +36,28 @@ public class RacketParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // LPAREN RPAREN
+  // LPAREN IDENTIFIER* RPAREN
   public static boolean Form(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Form")) return false;
     if (!nextTokenIs(b, LPAREN)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, LPAREN, RPAREN);
+    r = consumeToken(b, LPAREN);
+    r = r && Form_1(b, l + 1);
+    r = r && consumeToken(b, RPAREN);
     exit_section_(b, m, FORM, r);
     return r;
+  }
+
+  // IDENTIFIER*
+  private static boolean Form_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Form_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!consumeToken(b, IDENTIFIER)) break;
+      if (!empty_element_parsed_guard_(b, "Form_1", c)) break;
+    }
+    return true;
   }
 
   /* ********************************************************** */

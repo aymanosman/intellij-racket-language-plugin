@@ -12,6 +12,7 @@ public interface RacketTypes {
 
   IElementType COMMENT = new RacketTokenType("COMMENT");
   IElementType CRLF = new RacketTokenType("CRLF");
+  IElementType IDENTIFIER = new RacketTokenType("IDENTIFIER");
   IElementType LPAREN = new RacketTokenType("LPAREN");
   IElementType RPAREN = new RacketTokenType("RPAREN");
 

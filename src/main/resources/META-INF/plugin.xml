@@ -22,6 +22,7 @@
                                implementationClass="com.aymanosman.racket.plugin.RacketParserDefinition" />
         <lang.syntaxHighlighterFactory language="Racket"
                                        implementationClass="com.aymanosman.racket.plugin.RacketSyntaxHighlighterFactory" />
+        <colorSettingsPage implementation="com.aymanosman.racket.plugin.RacketColorSettingsPage" />
     </extensions>
 
     <actions>

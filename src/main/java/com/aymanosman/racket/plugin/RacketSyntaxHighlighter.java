@@ -10,14 +10,17 @@ import org.jetbrains.annotations.NotNull;
 
 public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey LPAREN =
-            TextAttributesKey.createTextAttributesKey("RACKET_LPAREN", DefaultLanguageHighlighterColors.BRACKETS);
+            TextAttributesKey.createTextAttributesKey("RACKET_LPAREN", DefaultLanguageHighlighterColors.PARENTHESES);
     public static final TextAttributesKey RPAREN =
-            TextAttributesKey.createTextAttributesKey("RACKET_RPAREN", DefaultLanguageHighlighterColors.BRACKETS);
+            TextAttributesKey.createTextAttributesKey("RACKET_RPAREN", DefaultLanguageHighlighterColors.PARENTHESES);
+    public static final TextAttributesKey IDENTIFIER =
+            TextAttributesKey.createTextAttributesKey("RACKET_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
     public static final TextAttributesKey COMMENT =
             TextAttributesKey.createTextAttributesKey("RACKET_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
 
     public static final TextAttributesKey[] LPAREN_KEYS = new TextAttributesKey[]{LPAREN};
     public static final TextAttributesKey[] RPAREN_KEYS = new TextAttributesKey[]{RPAREN};
+    public static final TextAttributesKey[] IDENTIFIER_KEYS = new TextAttributesKey[]{IDENTIFIER};
     public static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     public static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
@@ -34,6 +37,8 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
             return LPAREN_KEYS;
         } else if (tokenType.equals(RacketTypes.RPAREN)) {
             return RPAREN_KEYS;
+        } else if (tokenType.equals(RacketTypes.IDENTIFIER)) {
+            return IDENTIFIER_KEYS;
         } else if (tokenType.equals(RacketTypes.COMMENT)) {
             return COMMENT_KEYS;
         } else {

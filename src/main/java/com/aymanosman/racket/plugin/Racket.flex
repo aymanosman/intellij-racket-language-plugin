@@ -20,9 +20,10 @@ WHITE_SPACE=[\ \n\t\f]
 //FIRST_VALUE_CHARACTER=[^ \n\f\\] | "\\"{CRLF} | "\\".
 //VALUE_CHARACTER=[^\n\f\\] | "\\"{CRLF} | "\\".
 END_OF_LINE_COMMENT=(";")[^\r\n]*
-//SEPARATOR=[:=]
 LPAREN="("
 RPAREN=")"
+//IDENTIFIER_CHARACTER=[^'\ \n\t\f\\\(\)]
+IDENTIFIER_CHARACTER=[a-z]
 //KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 
 %state WAITING_VALUE
@@ -36,6 +37,7 @@ RPAREN=")"
 //<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return RacketTypes.SEPARATOR; }
 
 <YYINITIAL> {LPAREN}                                        { yybegin(WAITING_VALUE); return RacketTypes.LPAREN; }
+<WAITING_VALUE> {IDENTIFIER_CHARACTER}+                             { yybegin(WAITING_VALUE); return RacketTypes.IDENTIFIER; }
 <WAITING_VALUE> {RPAREN}                                    { yybegin(YYINITIAL); return RacketTypes.RPAREN; }
 
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
