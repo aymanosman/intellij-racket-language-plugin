@@ -55,8 +55,9 @@ class RacketLexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 320 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\4\1\2\1\1\1\5\1\3\22\0\1\4\7\0\1\7\1\10\21\0\1\6\45\0\3\11\1\12\1"+
-    "\13\1\14\2\11\1\15\4\11\1\16\14\11\12\0\1\1\242\0\2\1\26\0");
+    "\11\0\1\4\1\2\1\1\1\5\1\3\22\0\1\4\2\0\1\12\4\0\1\7\1\10\21\0\1\6\45\0\1\14"+
+    "\2\11\1\17\1\20\1\21\1\16\1\11\1\22\2\11\1\13\1\11\1\15\14\11\12\0\1\1\242"+
+    "\0\2\1\26\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -64,11 +65,11 @@ class RacketLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\2\0\1\1\1\2\1\3\1\4\1\5\1\2\2\6"+
-    "\1\7\1\1\4\0\1\10";
+    "\2\0\1\1\1\2\1\3\1\4\1\5\2\2\2\6"+
+    "\1\7\1\1\6\0\1\10\1\0\1\11";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[17];
+    int [] result = new int[22];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -93,12 +94,12 @@ class RacketLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\17\0\36\0\55\0\74\0\113\0\55\0\132"+
-    "\0\74\0\151\0\55\0\170\0\207\0\226\0\245\0\264"+
-    "\0\55";
+    "\0\0\0\23\0\46\0\71\0\114\0\137\0\71\0\162"+
+    "\0\205\0\114\0\230\0\71\0\253\0\276\0\321\0\344"+
+    "\0\367\0\u010a\0\u011d\0\71\0\u0130\0\71";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[17];
+    int [] result = new int[22];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -121,15 +122,16 @@ class RacketLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\4\5\5\1\6\1\7\2\4\1\10\5\4\5\5"+
-    "\12\4\1\5\1\11\1\5\1\12\1\11\2\4\1\13"+
-    "\6\14\20\0\5\5\11\0\2\6\2\0\13\6\13\0"+
-    "\1\15\4\0\1\5\1\12\1\5\2\12\22\0\6\14"+
-    "\14\0\1\16\17\0\1\17\17\0\1\20\13\0\1\21"+
-    "\3\0";
+    "\1\4\5\5\1\6\1\7\2\4\1\10\4\4\1\11"+
+    "\4\4\5\5\16\4\1\5\1\12\1\5\1\13\1\12"+
+    "\2\4\1\14\1\15\1\4\10\15\24\0\5\5\15\0"+
+    "\2\6\2\0\17\6\13\0\1\16\27\0\1\17\3\0"+
+    "\1\5\1\13\1\5\2\13\26\0\1\15\1\0\10\15"+
+    "\14\0\1\20\27\0\1\21\16\0\1\22\27\0\1\23"+
+    "\16\0\1\24\21\0\1\25\25\0\1\26\2\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[195];
+    int [] result = new int[323];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -167,11 +169,11 @@ class RacketLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\0\1\1\1\11\2\1\1\11\3\1\1\11\1\1"+
-    "\4\0\1\11";
+    "\2\0\1\1\1\11\2\1\1\11\4\1\1\11\1\1"+
+    "\6\0\1\11\1\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[17];
+    int [] result = new int[22];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -488,42 +490,47 @@ class RacketLexer implements FlexLexer {
             { yybegin(WAITING_VALUE); return RacketTypes.IDENTIFIER;
             } 
             // fall through
-          case 9: break;
+          case 10: break;
           case 2: 
             { return TokenType.BAD_CHARACTER;
             } 
             // fall through
-          case 10: break;
+          case 11: break;
           case 3: 
             { yybegin(YYINITIAL); return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 11: break;
+          case 12: break;
           case 4: 
-            { yybegin(YYINITIAL); return RacketTypes.COMMENT;
+            { return RacketTypes.COMMENT;
             } 
             // fall through
-          case 12: break;
+          case 13: break;
           case 5: 
             { yybegin(WAITING_VALUE); return RacketTypes.LPAREN;
             } 
             // fall through
-          case 13: break;
+          case 14: break;
           case 6: 
             { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 14: break;
+          case 15: break;
           case 7: 
             { yybegin(YYINITIAL); return RacketTypes.RPAREN;
             } 
             // fall through
-          case 15: break;
+          case 16: break;
           case 8: 
+            { return RacketTypes.HASH_LANG;
+            } 
+            // fall through
+          case 17: break;
+          case 9: 
             { return RacketTypes.KEYWORD;
             } 
             // fall through
-          case 16: break;
+          case 18: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

@@ -13,7 +13,9 @@
   tokenTypeClass="com.aymanosman.racket.plugin.psi.RacketTokenType"
 }
 
-RacketFile ::= Item_*
+RacketFile ::= LangLine Item_*
+
+LangLine ::= HASH_LANG IDENTIFIER
 
 Atom ::= IDENTIFIER | KEYWORD
 
