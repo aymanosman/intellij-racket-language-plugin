@@ -15,6 +15,10 @@ public class RacketVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitItem(@NotNull RacketItem o) {
+    visitPsiElement(o);
+  }
+
   public void visitLangLine(@NotNull RacketLangLine o) {
     visitPsiElement(o);
   }

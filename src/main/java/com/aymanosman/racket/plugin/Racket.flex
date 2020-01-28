@@ -35,8 +35,11 @@ IDENTIFIER_CHARACTER=[a-z+]*
 
 /* keywords */
 
-<YYINITIAL> "#lang" { return RacketTypes.HASH_LANG; }
-<YYINITIAL> "define" { return RacketTypes.KEYWORD; }
+<YYINITIAL> "#lang " { return RacketTypes.HASH_LANG; }
+
+<YYINITIAL> {IDENTIFIER_CHARACTER}+  { return RacketTypes.IDENTIFIER; }
+
+// <YYINITIAL> "define" { return RacketTypes.KEYWORD; }
 
 // "#;" SEXP_COMMENT
 
@@ -47,7 +50,7 @@ IDENTIFIER_CHARACTER=[a-z+]*
 //<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return RacketTypes.SEPARATOR; }
 
 <YYINITIAL> {LPAREN}                                        { yybegin(WAITING_VALUE); return RacketTypes.LPAREN; }
-<WAITING_VALUE> {IDENTIFIER_CHARACTER}+                             { yybegin(WAITING_VALUE); return RacketTypes.IDENTIFIER; }
+<WAITING_VALUE> {IDENTIFIER_CHARACTER}+  { yybegin(WAITING_VALUE); return RacketTypes.IDENTIFIER; }
 <WAITING_VALUE> {RPAREN}                                    { yybegin(YYINITIAL); return RacketTypes.RPAREN; }
 
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }

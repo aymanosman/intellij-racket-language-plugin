@@ -49,7 +49,7 @@ public class RacketParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // LPAREN IDENTIFIER* RPAREN
+  // LPAREN Atom* RPAREN
   public static boolean Form(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Form")) return false;
     if (!nextTokenIs(b, LPAREN)) return false;
@@ -62,12 +62,12 @@ public class RacketParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // IDENTIFIER*
+  // Atom*
   private static boolean Form_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Form_1")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!consumeToken(b, IDENTIFIER)) break;
+      if (!Atom(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Form_1", c)) break;
     }
     return true;
@@ -75,12 +75,14 @@ public class RacketParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // Form | COMMENT | CRLF
-  static boolean Item_(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Item_")) return false;
+  public static boolean Item(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Item")) return false;
     boolean r;
+    Marker m = enter_section_(b, l, _NONE_, ITEM, "<item>");
     r = Form(b, l + 1);
     if (!r) r = consumeToken(b, COMMENT);
     if (!r) r = consumeToken(b, CRLF);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -97,7 +99,7 @@ public class RacketParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // LangLine Item_*
+  // LangLine Item*
   static boolean RacketFile(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RacketFile")) return false;
     if (!nextTokenIs(b, HASH_LANG)) return false;
@@ -109,12 +111,12 @@ public class RacketParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Item_*
+  // Item*
   private static boolean RacketFile_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "RacketFile_1")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!Item_(b, l + 1)) break;
+      if (!Item(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "RacketFile_1", c)) break;
     }
     return true;

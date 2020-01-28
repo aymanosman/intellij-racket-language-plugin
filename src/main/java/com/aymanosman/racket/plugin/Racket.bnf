@@ -13,15 +13,12 @@
   tokenTypeClass="com.aymanosman.racket.plugin.psi.RacketTokenType"
 }
 
-RacketFile ::= LangLine Item_*
+RacketFile ::= LangLine Item*
 
 LangLine ::= HASH_LANG IDENTIFIER
 
+Item ::= (Form | COMMENT | CRLF)
+
+Form ::= LPAREN Atom* RPAREN
+
 Atom ::= IDENTIFIER | KEYWORD
-
-//private Item_ ::= (Property | COMMENT | CRLF)
-private Item_ ::= (Form | COMMENT | CRLF)
-
-Form ::= LPAREN IDENTIFIER* RPAREN
-
-//Property ::= (KEY? SEPARATOR VALUE?) | KEY

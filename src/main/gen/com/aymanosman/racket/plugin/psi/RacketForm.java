@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface RacketForm extends PsiElement {
 
+  @NotNull
+  List<RacketAtom> getAtomList();
+
 }

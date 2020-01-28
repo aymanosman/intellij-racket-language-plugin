@@ -10,6 +10,7 @@ public interface RacketTypes {
 
   IElementType ATOM = new RacketElementType("ATOM");
   IElementType FORM = new RacketElementType("FORM");
+  IElementType ITEM = new RacketElementType("ITEM");
   IElementType LANG_LINE = new RacketElementType("LANG_LINE");
 
   IElementType COMMENT = new RacketTokenType("COMMENT");
@@ -28,6 +29,9 @@ public interface RacketTypes {
       }
       else if (type == FORM) {
         return new RacketFormImpl(node);
+      }
+      else if (type == ITEM) {
+        return new RacketItemImpl(node);
       }
       else if (type == LANG_LINE) {
         return new RacketLangLineImpl(node);
