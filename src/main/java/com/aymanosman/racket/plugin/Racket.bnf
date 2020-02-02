@@ -13,9 +13,7 @@
   tokenTypeClass="com.aymanosman.racket.plugin.psi.RacketTokenType"
 }
 
-RacketFile ::= LangLine Item*
-
-LangLine ::= HASH_LANG IDENTIFIER // atomic
+RacketFile ::= HASH_LANG Item*
 
 Item ::= (Atom | Form | COMMENT | CRLF)
 

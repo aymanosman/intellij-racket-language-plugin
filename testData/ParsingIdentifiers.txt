@@ -1,7 +1,5 @@
 Racket file(0,77)
-  RacketLangLineImpl(LANG_LINE)(0,12)
-    PsiElement(RacketTokenType.HASH_LANG)('#lang ')(0,6)
-    PsiElement(RacketTokenType.IDENTIFIER)('racket')(6,12)
+  PsiElement(RacketTokenType.HASH_LANG)('#lang racket')(0,12)
   PsiWhiteSpace('\n\n')(12,14)
   RacketItemImpl(ITEM)(14,15)
     RacketAtomImpl(ATOM)(14,15)
