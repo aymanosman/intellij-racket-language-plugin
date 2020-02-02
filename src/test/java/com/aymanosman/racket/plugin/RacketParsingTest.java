@@ -8,7 +8,10 @@ public class RacketParsingTest extends ParsingTestCase {
     }
 
     public void testParsingTestData() {
-        System.out.println(System.getProperty("user.dir"));
+        doTest(true);
+    }
+
+    public void testParsingTestData2() {
         doTest(true);
     }
 
