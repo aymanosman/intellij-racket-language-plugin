@@ -15,6 +15,10 @@ public class RacketParsingTest extends ParsingTestCase {
         doTest(true);
     }
 
+    public void testParsingIdentifiers() {
+        doTest(true);
+    }
+
     @Override
     protected String getTestDataPath() {
         return "testData";
