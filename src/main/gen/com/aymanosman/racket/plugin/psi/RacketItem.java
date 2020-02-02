@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface RacketItem extends PsiElement {
 
   @Nullable
+  RacketAtom getAtom();
+
+  @Nullable
   RacketForm getForm();
 
 }

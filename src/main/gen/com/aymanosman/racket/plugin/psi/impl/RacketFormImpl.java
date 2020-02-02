@@ -28,8 +28,8 @@ public class RacketFormImpl extends ASTWrapperPsiElement implements RacketForm {
 
   @Override
   @NotNull
-  public List<RacketAtom> getAtomList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RacketAtom.class);
+  public List<RacketItem> getItemList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RacketItem.class);
   }
 
 }

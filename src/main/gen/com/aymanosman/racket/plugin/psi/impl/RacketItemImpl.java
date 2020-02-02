@@ -28,6 +28,12 @@ public class RacketItemImpl extends ASTWrapperPsiElement implements RacketItem {
 
   @Override
   @Nullable
+  public RacketAtom getAtom() {
+    return findChildByClass(RacketAtom.class);
+  }
+
+  @Override
+  @Nullable
   public RacketForm getForm() {
     return findChildByClass(RacketForm.class);
   }

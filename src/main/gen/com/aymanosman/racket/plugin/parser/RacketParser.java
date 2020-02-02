@@ -49,7 +49,7 @@ public class RacketParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // LPAREN Atom* RPAREN
+  // LPAREN Item* RPAREN
   public static boolean Form(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Form")) return false;
     if (!nextTokenIs(b, LPAREN)) return false;
@@ -62,24 +62,25 @@ public class RacketParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Atom*
+  // Item*
   private static boolean Form_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Form_1")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!Atom(b, l + 1)) break;
+      if (!Item(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Form_1", c)) break;
     }
     return true;
   }
 
   /* ********************************************************** */
-  // Form | COMMENT | CRLF
+  // Atom | Form | COMMENT | CRLF
   public static boolean Item(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Item")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, ITEM, "<item>");
-    r = Form(b, l + 1);
+    r = Atom(b, l + 1);
+    if (!r) r = Form(b, l + 1);
     if (!r) r = consumeToken(b, COMMENT);
     if (!r) r = consumeToken(b, CRLF);
     exit_section_(b, l, m, r, false, null);

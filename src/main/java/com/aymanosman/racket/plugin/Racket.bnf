@@ -15,10 +15,10 @@
 
 RacketFile ::= LangLine Item*
 
-LangLine ::= HASH_LANG IDENTIFIER
+LangLine ::= HASH_LANG IDENTIFIER // atomic
 
-Item ::= (Form | COMMENT | CRLF)
+Item ::= (Atom | Form | COMMENT | CRLF)
 
-Form ::= LPAREN Atom* RPAREN
+Form ::= LPAREN Item* RPAREN
 
 Atom ::= IDENTIFIER | KEYWORD

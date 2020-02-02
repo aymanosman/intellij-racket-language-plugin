@@ -23,7 +23,7 @@ END_OF_LINE_COMMENT=(";")[^\r\n]*
 LPAREN="("
 RPAREN=")"
 //IDENTIFIER_CHARACTER=[^'\ \n\t\f\\\(\)]
-IDENTIFIER_CHARACTER=[a-z+]*
+IDENTIFIER_CHARACTER=[a-zA-Z0-9+-.]*
 // Identifier = [:jletter:] [:jletterdigit:]*
 // DecIntegerLiteral = 0 | [1-9][0-9]*
 //KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
