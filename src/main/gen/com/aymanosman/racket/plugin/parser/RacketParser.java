@@ -36,111 +36,90 @@ public class RacketParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // IDENTIFIER | Datum
-  public static boolean Atom(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Atom")) return false;
-    if (!nextTokenIs(b, "<atom>", CONSTANT, IDENTIFIER)) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, ATOM, "<atom>");
-    r = consumeToken(b, IDENTIFIER);
-    if (!r) r = Datum(b, l + 1);
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  /* ********************************************************** */
-  // CONSTANT IDENTIFIER
-  //         | CONSTANT Form
+  // CONSTANT Form
   public static boolean Datum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Datum")) return false;
     if (!nextTokenIs(b, CONSTANT)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = parseTokens(b, 0, CONSTANT, IDENTIFIER);
-    if (!r) r = Datum_1(b, l + 1);
+    r = consumeToken(b, CONSTANT);
+    r = r && Form(b, l + 1);
     exit_section_(b, m, DATUM, r);
     return r;
   }
 
-  // CONSTANT Form
-  private static boolean Datum_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Datum_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, CONSTANT);
-    r = r && Form(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
   /* ********************************************************** */
-  // OPEN_PAREN Item* CLOSE_PAREN
+  // Datum
+  //        | IDENTIFIER
+  //        | STRING
+  //        | OPEN_PAREN Item* CLOSE_PAREN
   //        | OPEN_SQUARE Item* CLOSE_SQUARE
   public static boolean Form(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Form")) return false;
-    if (!nextTokenIs(b, "<form>", OPEN_PAREN, OPEN_SQUARE)) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, FORM, "<form>");
-    r = Form_0(b, l + 1);
-    if (!r) r = Form_1(b, l + 1);
+    r = Datum(b, l + 1);
+    if (!r) r = consumeToken(b, IDENTIFIER);
+    if (!r) r = consumeToken(b, STRING);
+    if (!r) r = Form_3(b, l + 1);
+    if (!r) r = Form_4(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   // OPEN_PAREN Item* CLOSE_PAREN
-  private static boolean Form_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Form_0")) return false;
+  private static boolean Form_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Form_3")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, OPEN_PAREN);
-    r = r && Form_0_1(b, l + 1);
+    r = r && Form_3_1(b, l + 1);
     r = r && consumeToken(b, CLOSE_PAREN);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // Item*
-  private static boolean Form_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Form_0_1")) return false;
+  private static boolean Form_3_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Form_3_1")) return false;
     while (true) {
       int c = current_position_(b);
       if (!Item(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "Form_0_1", c)) break;
+      if (!empty_element_parsed_guard_(b, "Form_3_1", c)) break;
     }
     return true;
   }
 
   // OPEN_SQUARE Item* CLOSE_SQUARE
-  private static boolean Form_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Form_1")) return false;
+  private static boolean Form_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Form_4")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, OPEN_SQUARE);
-    r = r && Form_1_1(b, l + 1);
+    r = r && Form_4_1(b, l + 1);
     r = r && consumeToken(b, CLOSE_SQUARE);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // Item*
-  private static boolean Form_1_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Form_1_1")) return false;
+  private static boolean Form_4_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Form_4_1")) return false;
     while (true) {
       int c = current_position_(b);
       if (!Item(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "Form_1_1", c)) break;
+      if (!empty_element_parsed_guard_(b, "Form_4_1", c)) break;
     }
     return true;
   }
 
   /* ********************************************************** */
-  // Atom | Form | COMMENT | CRLF
+  // Form | COMMENT | CRLF
   public static boolean Item(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Item")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, ITEM, "<item>");
-    r = Atom(b, l + 1);
-    if (!r) r = Form(b, l + 1);
+    r = Form(b, l + 1);
     if (!r) r = consumeToken(b, COMMENT);
     if (!r) r = consumeToken(b, CRLF);
     exit_section_(b, l, m, r, false, null);

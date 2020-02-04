@@ -8,7 +8,6 @@ import com.aymanosman.racket.plugin.psi.impl.*;
 
 public interface RacketTypes {
 
-  IElementType ATOM = new RacketElementType("ATOM");
   IElementType DATUM = new RacketElementType("DATUM");
   IElementType FORM = new RacketElementType("FORM");
   IElementType ITEM = new RacketElementType("ITEM");
@@ -22,14 +21,12 @@ public interface RacketTypes {
   IElementType IDENTIFIER = new RacketTokenType("IDENTIFIER");
   IElementType OPEN_PAREN = new RacketTokenType("OPEN_PAREN");
   IElementType OPEN_SQUARE = new RacketTokenType("OPEN_SQUARE");
+  IElementType STRING = new RacketTokenType("STRING");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == ATOM) {
-        return new RacketAtomImpl(node);
-      }
-      else if (type == DATUM) {
+      if (type == DATUM) {
         return new RacketDatumImpl(node);
       }
       else if (type == FORM) {

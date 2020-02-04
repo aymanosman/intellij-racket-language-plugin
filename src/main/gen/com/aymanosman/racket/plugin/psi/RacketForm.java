@@ -7,6 +7,9 @@ import com.intellij.psi.PsiElement;
 
 public interface RacketForm extends PsiElement {
 
+  @Nullable
+  RacketDatum getDatum();
+
   @NotNull
   List<RacketItem> getItemList();
 

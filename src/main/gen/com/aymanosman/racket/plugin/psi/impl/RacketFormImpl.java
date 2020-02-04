@@ -27,6 +27,12 @@ public class RacketFormImpl extends ASTWrapperPsiElement implements RacketForm {
   }
 
   @Override
+  @Nullable
+  public RacketDatum getDatum() {
+    return findChildByClass(RacketDatum.class);
+  }
+
+  @Override
   @NotNull
   public List<RacketItem> getItemList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RacketItem.class);

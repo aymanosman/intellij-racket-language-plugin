@@ -7,10 +7,6 @@ import com.intellij.psi.PsiElement;
 
 public class RacketVisitor extends PsiElementVisitor {
 
-  public void visitAtom(@NotNull RacketAtom o) {
-    visitPsiElement(o);
-  }
-
   public void visitDatum(@NotNull RacketDatum o) {
     visitPsiElement(o);
   }
