@@ -12,9 +12,7 @@ public class RacketParsingTest extends ParsingTestCase {
         doTest(true);
     }
     public void testParsingIdentifiers() { doTest(true); }
-    public void testParsingSymbols() {
-        doTest(true);
-    }
+    public void testParsingSymbols() { doTest(true); }
     public void testParsingStrings() { doTest(true); }
     public void testParsingBytes() { doTest(true); }
     public void testParsingCharacters() { doTest(true); }

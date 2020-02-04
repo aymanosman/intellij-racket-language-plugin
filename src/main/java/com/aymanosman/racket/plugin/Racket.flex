@@ -49,9 +49,22 @@ character_name="space"
 //bad_char="#\\" | "#\\" {alphabetic}{2} | "#\\" [0-3] {digit8}
 str=("#px" | "#rx")? "\"" ({string_element} | "\\" {unicode})* "\"" | {byte_str}
 byte_str= ("#px" | "#rx")? "#\"" {byte_string_element}* "\""
-byte_string_element=[[\x00-\xFF]--\"\\] | {string_escape}
 string_element= [^\"\\] | {string_escape}
-string_escape="\\\"" | "\\\\" | "\\a" | "\\b" | "\\t" | "\\n" | "\\v" | "\\f" | "\\r" | "\\e" | "\\'"
+byte_string_element=[[\x00-\xFF]--\"\\] | {string_escape}
+string_escape="\\\""
+             | "\\\\"
+             | "\\a"
+             | "\\b"
+             | "\\t"
+             | "\\n"
+             | "\\v"
+             | "\\f"
+             | "\\r"
+             | "\\e"
+             | "\\'"
+             | "\\" {digit8}{1,3}
+             | "\\x" {digit16}{1,3} // TODO why 3?
+             | "\\" \R
 //bad_str=...
 
 //script=...
