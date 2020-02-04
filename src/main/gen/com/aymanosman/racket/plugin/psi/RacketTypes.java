@@ -12,6 +12,7 @@ public interface RacketTypes {
   IElementType FORM = new RacketElementType("FORM");
   IElementType ITEM = new RacketElementType("ITEM");
 
+  IElementType CHARACTER = new RacketTokenType("CHARACTER");
   IElementType CLOSE_PAREN = new RacketTokenType("CLOSE_PAREN");
   IElementType CLOSE_SQUARE = new RacketTokenType("CLOSE_SQUARE");
   IElementType COMMENT = new RacketTokenType("COMMENT");
@@ -19,6 +20,7 @@ public interface RacketTypes {
   IElementType CRLF = new RacketTokenType("CRLF");
   IElementType HASH_LANG = new RacketTokenType("HASH_LANG");
   IElementType IDENTIFIER = new RacketTokenType("IDENTIFIER");
+  IElementType NUMBER = new RacketTokenType("NUMBER");
   IElementType OPEN_PAREN = new RacketTokenType("OPEN_PAREN");
   IElementType OPEN_SQUARE = new RacketTokenType("OPEN_SQUARE");
   IElementType STRING = new RacketTokenType("STRING");

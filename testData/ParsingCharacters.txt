@@ -1,0 +1,6 @@
+Racket file(0,23)
+  PsiElement(RacketTokenType.HASH_LANG)('#lang racket')(0,12)
+  PsiWhiteSpace('\n\n')(12,14)
+  RacketItemImpl(ITEM)(14,23)
+    RacketFormImpl(FORM)(14,23)
+      PsiElement(RacketTokenType.CHARACTER)('#\newline')(14,23)

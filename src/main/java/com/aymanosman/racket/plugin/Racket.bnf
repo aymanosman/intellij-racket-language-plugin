@@ -18,8 +18,10 @@ RacketFile ::= HASH_LANG Item*
 Item ::= (Form | COMMENT | CRLF)
 
 Form ::= Datum
-       | IDENTIFIER
+       | CHARACTER
+       | NUMBER
        | STRING
+       | IDENTIFIER
        | OPEN_PAREN Item* CLOSE_PAREN
        | OPEN_SQUARE Item* CLOSE_SQUARE
 
