@@ -17,6 +17,10 @@ RacketFile ::= HASH_LANG Item*
 
 Item ::= (Atom | Form | COMMENT | CRLF)
 
-Form ::= LPAREN Item* RPAREN
+Form ::= OPEN_PAREN Item* CLOSE_PAREN
+       | OPEN_SQUARE Item* CLOSE_SQUARE
 
-Atom ::= IDENTIFIER | KEYWORD
+Atom ::= IDENTIFIER | Datum
+
+Datum ::= CONSTANT IDENTIFIER
+        | CONSTANT Form

@@ -19,6 +19,10 @@ public class RacketParsingTest extends ParsingTestCase {
         doTest(true);
     }
 
+    public void testParsingSymbols() {
+        doTest(true);
+    }
+
     @Override
     protected String getTestDataPath() {
         return "testData";

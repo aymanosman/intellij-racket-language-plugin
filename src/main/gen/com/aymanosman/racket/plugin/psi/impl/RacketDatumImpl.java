@@ -11,14 +11,14 @@ import static com.aymanosman.racket.plugin.psi.RacketTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.aymanosman.racket.plugin.psi.*;
 
-public class RacketAtomImpl extends ASTWrapperPsiElement implements RacketAtom {
+public class RacketDatumImpl extends ASTWrapperPsiElement implements RacketDatum {
 
-  public RacketAtomImpl(@NotNull ASTNode node) {
+  public RacketDatumImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RacketVisitor visitor) {
-    visitor.visitAtom(this);
+    visitor.visitDatum(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -28,8 +28,8 @@ public class RacketAtomImpl extends ASTWrapperPsiElement implements RacketAtom {
 
   @Override
   @Nullable
-  public RacketDatum getDatum() {
-    return findChildByClass(RacketDatum.class);
+  public RacketForm getForm() {
+    return findChildByClass(RacketForm.class);
   }
 
 }
