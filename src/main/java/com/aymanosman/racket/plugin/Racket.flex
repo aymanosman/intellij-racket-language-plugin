@@ -47,8 +47,9 @@ character_name="space"
                | "newline"
 
 //bad_char="#\\" | "#\\" {alphabetic}{2} | "#\\" [0-3] {digit8}
-str=("#px" | "#rx")? "\"" ({string_element} | "\\" {unicode})* "\"" //| {byte_str}
-//bytes_str=...
+str=("#px" | "#rx")? "\"" ({string_element} | "\\" {unicode})* "\"" | {byte_str}
+byte_str= ("#px" | "#rx")? "#\"" {byte_string_element}* "\""
+byte_string_element=[[\x00-\xFF]--\"\\] | {string_escape}
 string_element= [^\"\\] | {string_escape}
 string_escape="\\\"" | "\\\\" | "\\a" | "\\b" | "\\t" | "\\n" | "\\v" | "\\f" | "\\r" | "\\e" | "\\'"
 //bad_str=...
@@ -91,16 +92,23 @@ numbers={INTEGER_LITERAL}
  {character} { return RacketTypes.CHARACTER; }
  {numbers} { return RacketTypes.NUMBER; }
 
- {identifier}  { return RacketTypes.IDENTIFIER; }
+ // keyword
+ {str} { return RacketTypes.STRING; }
  {line_comment} { return RacketTypes.COMMENT; }
+ // #;
+ // #|
+ // script
+
+
  {list_prefix} "(" { return RacketTypes.OPEN_PAREN; }
       ")"          { return RacketTypes.CLOSE_PAREN; }
  {list_prefix} "[" { return RacketTypes.OPEN_SQUARE; }
   "]" { return RacketTypes.CLOSE_SQUARE; }
 
-  {constant}  { return RacketTypes.CONSTANT; }
+ {constant}  { return RacketTypes.CONSTANT; }
 
-  {str} { return RacketTypes.STRING; }
+ {identifier}  { return RacketTypes.IDENTIFIER; }
+ // #<<
 
  {CRLF}({CRLF}|{WHITE_SPACE})+ { return TokenType.WHITE_SPACE; }
 // {WHITE_SPACE}+ { return TokenType.WHITE_SPACE; }
