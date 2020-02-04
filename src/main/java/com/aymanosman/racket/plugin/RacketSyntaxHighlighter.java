@@ -15,15 +15,18 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
             TextAttributesKey.createTextAttributesKey("RACKET_CLOSE_PAREN", DefaultLanguageHighlighterColors.PARENTHESES);
     public static final TextAttributesKey IDENTIFIER =
             TextAttributesKey.createTextAttributesKey("RACKET_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
-    public static final TextAttributesKey KEYWORD =
-            TextAttributesKey.createTextAttributesKey("RACKET_KEYWORD", DefaultLanguageHighlighterColors.IDENTIFIER);
+    public static final TextAttributesKey STRING =
+            TextAttributesKey.createTextAttributesKey("RACKET_STRING", DefaultLanguageHighlighterColors.STRING);
+    public static final TextAttributesKey CONSTANT =
+            TextAttributesKey.createTextAttributesKey("RACKET_CONSTANT", DefaultLanguageHighlighterColors.CONSTANT);
     public static final TextAttributesKey COMMENT =
             TextAttributesKey.createTextAttributesKey("RACKET_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
 
     public static final TextAttributesKey[] OPEN_PAREN_KEYS = new TextAttributesKey[]{OPEN_PAREN};
     public static final TextAttributesKey[] CLOSE_PAREN_KEYS = new TextAttributesKey[]{CLOSE_PAREN};
     public static final TextAttributesKey[] IDENTIFIER_KEYS = new TextAttributesKey[]{IDENTIFIER};
-    public static final TextAttributesKey[] KEYWORD_KEYS = new TextAttributesKey[]{KEYWORD};
+    public static final TextAttributesKey[] STRING_KEYS = new TextAttributesKey[]{STRING};
+    public static final TextAttributesKey[] CONSTANT_KEYS = new TextAttributesKey[]{CONSTANT};
     public static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     public static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
@@ -42,6 +45,10 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
             return CLOSE_PAREN_KEYS;
         } else if (tokenType.equals(RacketTypes.IDENTIFIER)) {
             return IDENTIFIER_KEYS;
+        } else if (tokenType.equals(RacketTypes.STRING)) {
+            return STRING_KEYS;
+        } else if (tokenType.equals(RacketTypes.CONSTANT)) {
+            return CONSTANT_KEYS;
        } else if (tokenType.equals(RacketTypes.COMMENT)) {
             return COMMENT_KEYS;
         } else {

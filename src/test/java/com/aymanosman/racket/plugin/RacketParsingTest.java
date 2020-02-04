@@ -7,21 +7,15 @@ public class RacketParsingTest extends ParsingTestCase {
         super("", "rkt", new RacketParserDefinition());
     }
 
-    public void testParsingTestData() {
-        doTest(true);
-    }
-
+    public void testParsingTestData() { doTest(true); }
     public void testParsingTestData2() {
         doTest(true);
     }
-
-    public void testParsingIdentifiers() {
-        doTest(true);
-    }
-
+    public void testParsingIdentifiers() { doTest(true); }
     public void testParsingSymbols() {
         doTest(true);
     }
+    public void testParsingStrings() { doTest(true); }
 
     @Override
     protected String getTestDataPath() {

@@ -14,8 +14,9 @@ import java.util.Map;
 public class RacketColorSettingsPage implements ColorSettingsPage {
     public static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Identifier", RacketSyntaxHighlighter.IDENTIFIER),
-            new AttributesDescriptor("Keyword", RacketSyntaxHighlighter.KEYWORD),
             new AttributesDescriptor("Comment", RacketSyntaxHighlighter.COMMENT),
+            new AttributesDescriptor("String", RacketSyntaxHighlighter.STRING),
+            new AttributesDescriptor("Constant", RacketSyntaxHighlighter.CONSTANT), // TODO this is confusing QUOTE?
     };
 
     @Nullable
@@ -33,9 +34,10 @@ public class RacketColorSettingsPage implements ColorSettingsPage {
     @NotNull
     @Override
     public String getDemoText() {
-        return ";; This is a comment\n" +
+        return "#lang racket/base\n" +
+                ";; This is a comment\n" +
                 "()\n"+
-                "(define this fixme)";
+                "(define a-thing (list 42 \"hello world\" 'fixme))";
     }
 
     @Nullable

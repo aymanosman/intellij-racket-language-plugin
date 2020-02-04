@@ -39,7 +39,18 @@ racket_whitespace={WHITE_SPACE} // TODO
 //   [digit10 digit]
 //   [digit16 (:/ "af" "AF" "09")]
 digit=[0-9]
+digit2=[0-1]
+digit8=[0-7]
 digit10={digit}
+digit16=[a-fA-F0-9]
+
+// [str (:or (:: (:? (:or "#px" "#rx")) "\"" (:* string-element (:: "\\" unicode)) "\"")
+   //             byte-str)]
+unicode= "u0000"  | "U000000" // TODO
+string_escape="\\\"" | "\\\\" | "\\a" | "\\b" | "\\t" | "\\n" | "\\v" | "\\f" | "\\r" | "\\e" | "\\'"
+string_element= [^\"\\] | {string_escape}
+str=("#px" | "#rx")? "\"" ({string_element} | "\\" {unicode})* "\"" //| {byte_str}
+
 
 //   [list-prefix (:or "" "#hash" "#hasheq" "#hasheqv" "#s" (:: "#" (:* digit10)))])
 list_prefix=""|"#hash"|"#hasheq"|"#hasheqv"|"#s"| "#" {digit10}*
@@ -71,6 +82,10 @@ line_comment=";".*
       // [(:or "'" "`" "#'" "#`" "#&")
               //      (ret lexeme 'constant #f start-pos end-pos 'continue)]
   "'" | "`" | "#'" | "#`" | "#&"  { return RacketTypes.CONSTANT; }
+
+      //      [str (ret lexeme 'string #f start-pos end-pos 'datum)]
+
+      {str} { return RacketTypes.STRING; }
 
  {CRLF}({CRLF}|{WHITE_SPACE})+ { return TokenType.WHITE_SPACE; }
 // {WHITE_SPACE}+ { return TokenType.WHITE_SPACE; }
