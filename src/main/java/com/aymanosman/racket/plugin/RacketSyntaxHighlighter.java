@@ -9,10 +9,6 @@ import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 
 public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
-    public static final TextAttributesKey OPEN_PAREN =
-            TextAttributesKey.createTextAttributesKey("RACKET_OPEN_PAREN", DefaultLanguageHighlighterColors.PARENTHESES);
-    public static final TextAttributesKey CLOSE_PAREN =
-            TextAttributesKey.createTextAttributesKey("RACKET_CLOSE_PAREN", DefaultLanguageHighlighterColors.PARENTHESES);
     public static final TextAttributesKey IDENTIFIER =
             TextAttributesKey.createTextAttributesKey("RACKET_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
     public static final TextAttributesKey STRING =
@@ -21,17 +17,18 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
             TextAttributesKey.createTextAttributesKey("RACKET_CONSTANT", DefaultLanguageHighlighterColors.CONSTANT);
     public static final TextAttributesKey NUMBER =
             TextAttributesKey.createTextAttributesKey("RACKET_NUMBER", DefaultLanguageHighlighterColors.NUMBER);
+    public static final TextAttributesKey PARENTHESES =
+            TextAttributesKey.createTextAttributesKey("RACKET_PARENTHESES", DefaultLanguageHighlighterColors.PARENTHESES);
     public static final TextAttributesKey CHARACTER =
             TextAttributesKey.createTextAttributesKey("RACKET_CHARACTER", DefaultLanguageHighlighterColors.CONSTANT);
     public static final TextAttributesKey COMMENT =
             TextAttributesKey.createTextAttributesKey("RACKET_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
 
-    public static final TextAttributesKey[] OPEN_PAREN_KEYS = new TextAttributesKey[]{OPEN_PAREN};
-    public static final TextAttributesKey[] CLOSE_PAREN_KEYS = new TextAttributesKey[]{CLOSE_PAREN};
     public static final TextAttributesKey[] IDENTIFIER_KEYS = new TextAttributesKey[]{IDENTIFIER};
     public static final TextAttributesKey[] STRING_KEYS = new TextAttributesKey[]{STRING};
     public static final TextAttributesKey[] CONSTANT_KEYS = new TextAttributesKey[]{CONSTANT};
     public static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[]{NUMBER};
+    public static final TextAttributesKey[] PARENTHESES_KEYS = new TextAttributesKey[]{PARENTHESES};
     public static final TextAttributesKey[] CHARACTER_KEYS = new TextAttributesKey[]{CHARACTER};
     public static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     public static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
@@ -45,11 +42,7 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-        if (tokenType.equals(RacketTypes.OPEN_PAREN)) {
-            return OPEN_PAREN_KEYS;
-        } else if (tokenType.equals(RacketTypes.CLOSE_PAREN)) {
-            return CLOSE_PAREN_KEYS;
-        } else if (tokenType.equals(RacketTypes.IDENTIFIER)) {
+        if (tokenType.equals(RacketTypes.IDENTIFIER)) {
             return IDENTIFIER_KEYS;
         } else if (tokenType.equals(RacketTypes.STRING)) {
             return STRING_KEYS;
@@ -59,6 +52,11 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
             return NUMBER_KEYS;
         } else if (tokenType.equals(RacketTypes.CHARACTER)) {
             return CHARACTER_KEYS;
+        } else if (tokenType.equals(RacketTypes.OPEN_PAREN)
+                || tokenType.equals(RacketTypes.CLOSE_PAREN)
+                || tokenType.equals(RacketTypes.OPEN_SQUARE)
+                || tokenType.equals(RacketTypes.CLOSE_SQUARE)) {
+            return PARENTHESES_KEYS;
         } else if (tokenType.equals(RacketTypes.COMMENT)) {
             return COMMENT_KEYS;
         } else {

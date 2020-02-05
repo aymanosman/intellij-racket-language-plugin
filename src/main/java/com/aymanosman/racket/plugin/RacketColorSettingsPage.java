@@ -18,6 +18,7 @@ public class RacketColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("String", RacketSyntaxHighlighter.STRING),
             new AttributesDescriptor("Constant", RacketSyntaxHighlighter.CONSTANT), // TODO this is confusing QUOTE?
             new AttributesDescriptor("Number", RacketSyntaxHighlighter.NUMBER),
+            new AttributesDescriptor("Parentheses", RacketSyntaxHighlighter.PARENTHESES),
     };
 
     @Nullable
