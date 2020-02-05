@@ -15,6 +15,7 @@
 
 RacketFile ::= HASH_LANG Item*
 
+// TODO Push non list Forms into Item
 Item ::= (Form | COMMENT | SEXP_COMMENT | CRLF)
 
 Form ::= Datum
