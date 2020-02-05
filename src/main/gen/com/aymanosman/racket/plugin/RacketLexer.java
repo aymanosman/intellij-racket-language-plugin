@@ -594,16 +594,19 @@ class RacketLexer implements FlexLexer {
             // fall through
           case 26: break;
           case 12: 
-            { if (yytext().equals("#true")
-           || yytext().equals("#false")
-           || yytext().equals("#t")
-           || yytext().equals("#f")
-           || yytext().equals("#T")
-           || yytext().equals("#F")) {
-           return RacketTypes.BOOLEAN;
-       } else {
-           return TokenType.ERROR_ELEMENT;
-       }
+            { {
+              String xs = yytext().toString();
+              if (xs.equals("#true")
+                  || xs.equals("#false")
+                  || xs.equals("#t")
+                  || xs.equals("#f")
+                  || xs.equals("#T")
+                  || xs.equals("#F")) {
+                  return RacketTypes.BOOLEAN;
+              } else {
+                  return TokenType.ERROR_ELEMENT;
+              }
+          }
             } 
             // fall through
           case 27: break;

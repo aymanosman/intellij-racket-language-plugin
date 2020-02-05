@@ -103,16 +103,19 @@ sexp_comment="#;"
 <MAIN> {
  {racket_whitespace}+ { return TokenType.WHITE_SPACE; }
  {booleans} {
-       if (yytext().equals("#true")
-           || yytext().equals("#false")
-           || yytext().equals("#t")
-           || yytext().equals("#f")
-           || yytext().equals("#T")
-           || yytext().equals("#F")) {
-           return RacketTypes.BOOLEAN;
-       } else {
-           return TokenType.ERROR_ELEMENT;
-       }
+          {
+              String xs = yytext().toString();
+              if (xs.equals("#true")
+                  || xs.equals("#false")
+                  || xs.equals("#t")
+                  || xs.equals("#f")
+                  || xs.equals("#T")
+                  || xs.equals("#F")) {
+                  return RacketTypes.BOOLEAN;
+              } else {
+                  return TokenType.ERROR_ELEMENT;
+              }
+          }
       }
  {character} { return RacketTypes.CHARACTER; }
  {numbers} { return RacketTypes.NUMBER; }
@@ -126,9 +129,9 @@ sexp_comment="#;"
 
 
  {list_prefix} "(" { return RacketTypes.OPEN_PAREN; }
-      ")"          { return RacketTypes.CLOSE_PAREN; }
+ ")" { return RacketTypes.CLOSE_PAREN; }
  {list_prefix} "[" { return RacketTypes.OPEN_SQUARE; }
-  "]" { return RacketTypes.CLOSE_SQUARE; }
+ "]" { return RacketTypes.CLOSE_SQUARE; }
 
  {constant}  { return RacketTypes.CONSTANT; }
 
