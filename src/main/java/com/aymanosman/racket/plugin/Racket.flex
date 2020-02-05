@@ -22,6 +22,33 @@ WHITE_SPACE=[\ \n\r\t\f]
 // =
 any_char=.
 
+a=[aA]
+b=[bB]
+c=[cC]
+d=[dD]
+e=[eE]
+f=[fF]
+g=[gG]
+h=[hH]
+i=[iI]
+j=[jJ]
+k=[kK]
+l=[lL]
+m=[mM]
+n=[nN]
+o=[oO]
+p=[pP]
+q=[qQ]
+r=[rR]
+s=[sS]
+t=[tT]
+u=[uU]
+v=[vV]
+w=[wW]
+x=[xX]
+y=[yY]
+z=[zZ]
+
 // =
 digit=[0-9]
 digit2=[0-1]
@@ -43,8 +70,18 @@ character= "#\\" {any_char}
          | "#\\" [0-3] {digit8} {digit8}
          | "#\\" {unicode}
 
-character_name="space"
-               | "newline"
+character_name= {s}{p}{a}{c}{e}
+              | {n}{e}{w}{l}{i}{n}{e}
+              | {n}{u}{l}
+              | {n}{u}{l}{l}
+              | {b}{a}{c}{k}{s}{p}{a}{c}{e}
+              | {t}{a}{b}
+              | {l}{i}{n}{e}{f}{e}{e}{d}
+              | {v}{t}{a}{b}
+              | {p}{a}{g}{e}
+              | {r}{e}{t}{u}{r}{n}
+              | {r}{u}{b}{o}{u}{t}
+
 
 //bad_char="#\\" | "#\\" {alphabetic}{2} | "#\\" [0-3] {digit8}
 str=("#px" | "#rx")? "\"" ({string_element} | "\\" {unicode})* "\"" | {byte_str}
