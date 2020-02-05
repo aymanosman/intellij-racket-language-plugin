@@ -15,7 +15,7 @@
 
 RacketFile ::= HASH_LANG Item*
 
-Item ::= (Form | COMMENT | CRLF)
+Item ::= (Form | COMMENT | SEXP_COMMENT | CRLF)
 
 Form ::= Datum
        | CHARACTER

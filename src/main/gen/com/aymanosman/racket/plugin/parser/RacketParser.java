@@ -118,13 +118,14 @@ public class RacketParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Form | COMMENT | CRLF
+  // Form | COMMENT | SEXP_COMMENT | CRLF
   public static boolean Item(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Item")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, ITEM, "<item>");
     r = Form(b, l + 1);
     if (!r) r = consumeToken(b, COMMENT);
+    if (!r) r = consumeToken(b, SEXP_COMMENT);
     if (!r) r = consumeToken(b, CRLF);
     exit_section_(b, l, m, r, false, null);
     return r;

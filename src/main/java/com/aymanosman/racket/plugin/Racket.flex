@@ -63,7 +63,7 @@ string_escape="\\\""
              | "\\e"
              | "\\'"
              | "\\" {digit8}{1,3}
-             | "\\x" {digit16}{1,3} // TODO why 3?
+             | "\\x" {digit16}{1,3} // TODO why 3 and not 2?
              | "\\" \R
 //bad_str=...
 
@@ -92,6 +92,7 @@ langline=("#lang " | "#!") ({langchar} | ({langchar} ({langchar} | "/")* {langch
 constant="'" | "`" | "#'" | "#`" | "#&"
 booleans=("#true"|"#false"|"#t"|"#f"|"#T"|"#F") [^\",'`()\[\]{};\\|\ \n\r\t\f]*
 numbers={INTEGER_LITERAL}
+sexp_comment="#;"
 
 %state MAIN
 
@@ -108,7 +109,7 @@ numbers={INTEGER_LITERAL}
  // keyword
  {str} { return RacketTypes.STRING; }
  {line_comment} { return RacketTypes.COMMENT; }
- // #;
+ {sexp_comment} { return RacketTypes.SEXP_COMMENT; }
  // #|
  // script
 

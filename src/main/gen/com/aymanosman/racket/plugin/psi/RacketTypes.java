@@ -23,6 +23,7 @@ public interface RacketTypes {
   IElementType NUMBER = new RacketTokenType("NUMBER");
   IElementType OPEN_PAREN = new RacketTokenType("OPEN_PAREN");
   IElementType OPEN_SQUARE = new RacketTokenType("OPEN_SQUARE");
+  IElementType SEXP_COMMENT = new RacketTokenType("SEXP_COMMENT");
   IElementType STRING = new RacketTokenType("STRING");
 
   class Factory {

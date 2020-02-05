@@ -57,7 +57,8 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
                 || tokenType.equals(RacketTypes.OPEN_SQUARE)
                 || tokenType.equals(RacketTypes.CLOSE_SQUARE)) {
             return PARENTHESES_KEYS;
-        } else if (tokenType.equals(RacketTypes.COMMENT)) {
+        } else if (tokenType.equals(RacketTypes.COMMENT)
+                || tokenType.equals(RacketTypes.SEXP_COMMENT)) {
             return COMMENT_KEYS;
         } else {
             return EMPTY_KEYS;
