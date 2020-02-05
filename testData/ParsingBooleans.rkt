@@ -1,3 +1,3 @@
 #lang racket
 
-#f
+#true #false #t #f #T #f
