@@ -37,19 +37,43 @@ public class RacketParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // CONSTANT Form
+  //         | UNQUOTE Form
   public static boolean Datum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Datum")) return false;
-    if (!nextTokenIs(b, CONSTANT)) return false;
+    if (!nextTokenIs(b, "<datum>", CONSTANT, UNQUOTE)) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, DATUM, "<datum>");
+    r = Datum_0(b, l + 1);
+    if (!r) r = Datum_1(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // CONSTANT Form
+  private static boolean Datum_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Datum_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, CONSTANT);
     r = r && Form(b, l + 1);
-    exit_section_(b, m, DATUM, r);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // UNQUOTE Form
+  private static boolean Datum_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Datum_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, UNQUOTE);
+    r = r && Form(b, l + 1);
+    exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
   // Datum
+  //        | DOT
   //        | CHARACTER
   //        | NUMBER
   //        | BOOLEAN
@@ -62,48 +86,26 @@ public class RacketParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, FORM, "<form>");
     r = Datum(b, l + 1);
+    if (!r) r = consumeToken(b, DOT);
     if (!r) r = consumeToken(b, CHARACTER);
     if (!r) r = consumeToken(b, NUMBER);
     if (!r) r = consumeToken(b, BOOLEAN);
     if (!r) r = consumeToken(b, STRING);
     if (!r) r = consumeToken(b, IDENTIFIER);
-    if (!r) r = Form_6(b, l + 1);
     if (!r) r = Form_7(b, l + 1);
+    if (!r) r = Form_8(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   // OPEN_PAREN Item* CLOSE_PAREN
-  private static boolean Form_6(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Form_6")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, OPEN_PAREN);
-    r = r && Form_6_1(b, l + 1);
-    r = r && consumeToken(b, CLOSE_PAREN);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // Item*
-  private static boolean Form_6_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Form_6_1")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!Item(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "Form_6_1", c)) break;
-    }
-    return true;
-  }
-
-  // OPEN_SQUARE Item* CLOSE_SQUARE
   private static boolean Form_7(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Form_7")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, OPEN_SQUARE);
+    r = consumeToken(b, OPEN_PAREN);
     r = r && Form_7_1(b, l + 1);
-    r = r && consumeToken(b, CLOSE_SQUARE);
+    r = r && consumeToken(b, CLOSE_PAREN);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -115,6 +117,29 @@ public class RacketParser implements PsiParser, LightPsiParser {
       int c = current_position_(b);
       if (!Item(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Form_7_1", c)) break;
+    }
+    return true;
+  }
+
+  // OPEN_SQUARE Item* CLOSE_SQUARE
+  private static boolean Form_8(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Form_8")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, OPEN_SQUARE);
+    r = r && Form_8_1(b, l + 1);
+    r = r && consumeToken(b, CLOSE_SQUARE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // Item*
+  private static boolean Form_8_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Form_8_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!Item(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "Form_8_1", c)) break;
     }
     return true;
   }

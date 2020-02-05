@@ -18,6 +18,7 @@ RacketFile ::= HASH_LANG Item*
 Item ::= (Form | COMMENT | SEXP_COMMENT | CRLF)
 
 Form ::= Datum
+       | DOT
        | CHARACTER
        | NUMBER
        | BOOLEAN
@@ -27,3 +28,4 @@ Form ::= Datum
        | OPEN_SQUARE Item* CLOSE_SQUARE
 
 Datum ::= CONSTANT Form
+        | UNQUOTE Form

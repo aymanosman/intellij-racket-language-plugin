@@ -93,6 +93,8 @@ constant="'" | "`" | "#'" | "#`" | "#&"
 booleans=("#true"|"#false"|"#t"|"#f"|"#T"|"#F") [^\",'`()\[\]{};\\|\ \n\r\t\f]*
 numbers={INTEGER_LITERAL}
 sexp_comment="#;"
+dot="."
+unquote=","|",@"|"#,"|"#,@"
 
 %state MAIN
 
@@ -134,6 +136,8 @@ sexp_comment="#;"
  "]" { return RacketTypes.CLOSE_SQUARE; }
 
  {constant}  { return RacketTypes.CONSTANT; }
+ {dot} { return RacketTypes.DOT; }
+ {unquote} { return RacketTypes.UNQUOTE; }
 
  {identifier}  { return RacketTypes.IDENTIFIER; }
  // #<<
