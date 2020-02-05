@@ -68,8 +68,8 @@ class RacketLexer implements FlexLexer {
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\2\2\2\3\2\4\1\1\1\5\3\2"+
     "\1\6\1\2\1\7\1\10\1\11\1\12\5\0\1\13"+
-    "\4\0\1\6\3\0\1\14\1\0\1\15\6\16\7\0"+
-    "\2\16\6\0\1\16\3\0\1\16\5\0";
+    "\4\0\1\14\3\0\1\15\1\0\1\16\6\17\7\0"+
+    "\2\17\6\0\1\17\3\0\1\17\5\0";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[67];
@@ -542,72 +542,86 @@ class RacketLexer implements FlexLexer {
             { return RacketTypes.NUMBER;
             } 
             // fall through
-          case 15: break;
+          case 16: break;
           case 2: 
             { return TokenType.BAD_CHARACTER;
             } 
             // fall through
-          case 16: break;
+          case 17: break;
           case 3: 
             { return RacketTypes.IDENTIFIER;
             } 
             // fall through
-          case 17: break;
+          case 18: break;
           case 4: 
             { return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 18: break;
+          case 19: break;
           case 5: 
             { return RacketTypes.COMMENT;
             } 
             // fall through
-          case 19: break;
+          case 20: break;
           case 6: 
             { return RacketTypes.CONSTANT;
             } 
             // fall through
-          case 20: break;
+          case 21: break;
           case 7: 
             { return RacketTypes.OPEN_PAREN;
             } 
             // fall through
-          case 21: break;
+          case 22: break;
           case 8: 
             { return RacketTypes.CLOSE_PAREN;
             } 
             // fall through
-          case 22: break;
+          case 23: break;
           case 9: 
             { return RacketTypes.OPEN_SQUARE;
             } 
             // fall through
-          case 23: break;
+          case 24: break;
           case 10: 
             { return RacketTypes.CLOSE_SQUARE;
             } 
             // fall through
-          case 24: break;
+          case 25: break;
           case 11: 
             { return RacketTypes.SEXP_COMMENT;
             } 
             // fall through
-          case 25: break;
-          case 12: 
-            { return RacketTypes.STRING;
-            } 
-            // fall through
           case 26: break;
-          case 13: 
-            { yybegin(MAIN); return RacketTypes.HASH_LANG;
+          case 12: 
+            { if (yytext().equals("#true")
+           || yytext().equals("#false")
+           || yytext().equals("#t")
+           || yytext().equals("#f")
+           || yytext().equals("#T")
+           || yytext().equals("#F")) {
+           return RacketTypes.BOOLEAN;
+       } else {
+           return TokenType.ERROR_ELEMENT;
+       }
             } 
             // fall through
           case 27: break;
-          case 14: 
-            { return RacketTypes.CHARACTER;
+          case 13: 
+            { return RacketTypes.STRING;
             } 
             // fall through
           case 28: break;
+          case 14: 
+            { yybegin(MAIN); return RacketTypes.HASH_LANG;
+            } 
+            // fall through
+          case 29: break;
+          case 15: 
+            { return RacketTypes.CHARACTER;
+            } 
+            // fall through
+          case 30: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

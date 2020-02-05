@@ -17,6 +17,8 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
             TextAttributesKey.createTextAttributesKey("RACKET_CONSTANT", DefaultLanguageHighlighterColors.CONSTANT);
     public static final TextAttributesKey NUMBER =
             TextAttributesKey.createTextAttributesKey("RACKET_NUMBER", DefaultLanguageHighlighterColors.NUMBER);
+    public static final TextAttributesKey BOOLEAN =
+            TextAttributesKey.createTextAttributesKey("RACKET_BOOLEAN", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey PARENTHESES =
             TextAttributesKey.createTextAttributesKey("RACKET_PARENTHESES", DefaultLanguageHighlighterColors.PARENTHESES);
     public static final TextAttributesKey CHARACTER =
@@ -28,6 +30,7 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey[] STRING_KEYS = new TextAttributesKey[]{STRING};
     public static final TextAttributesKey[] CONSTANT_KEYS = new TextAttributesKey[]{CONSTANT};
     public static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[]{NUMBER};
+    public static final TextAttributesKey[] BOOLEAN_KEYS = new TextAttributesKey[]{BOOLEAN};
     public static final TextAttributesKey[] PARENTHESES_KEYS = new TextAttributesKey[]{PARENTHESES};
     public static final TextAttributesKey[] CHARACTER_KEYS = new TextAttributesKey[]{CHARACTER};
     public static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
@@ -50,6 +53,8 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
             return CONSTANT_KEYS;
         } else if (tokenType.equals(RacketTypes.NUMBER)) {
             return NUMBER_KEYS;
+        } else if (tokenType.equals(RacketTypes.BOOLEAN)) {
+            return BOOLEAN_KEYS;
         } else if (tokenType.equals(RacketTypes.CHARACTER)) {
             return CHARACTER_KEYS;
         } else if (tokenType.equals(RacketTypes.OPEN_PAREN)

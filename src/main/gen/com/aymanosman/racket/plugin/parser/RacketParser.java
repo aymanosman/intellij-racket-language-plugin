@@ -52,6 +52,7 @@ public class RacketParser implements PsiParser, LightPsiParser {
   // Datum
   //        | CHARACTER
   //        | NUMBER
+  //        | BOOLEAN
   //        | STRING
   //        | IDENTIFIER
   //        | OPEN_PAREN Item* CLOSE_PAREN
@@ -63,45 +64,23 @@ public class RacketParser implements PsiParser, LightPsiParser {
     r = Datum(b, l + 1);
     if (!r) r = consumeToken(b, CHARACTER);
     if (!r) r = consumeToken(b, NUMBER);
+    if (!r) r = consumeToken(b, BOOLEAN);
     if (!r) r = consumeToken(b, STRING);
     if (!r) r = consumeToken(b, IDENTIFIER);
-    if (!r) r = Form_5(b, l + 1);
     if (!r) r = Form_6(b, l + 1);
+    if (!r) r = Form_7(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   // OPEN_PAREN Item* CLOSE_PAREN
-  private static boolean Form_5(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Form_5")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, OPEN_PAREN);
-    r = r && Form_5_1(b, l + 1);
-    r = r && consumeToken(b, CLOSE_PAREN);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // Item*
-  private static boolean Form_5_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Form_5_1")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!Item(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "Form_5_1", c)) break;
-    }
-    return true;
-  }
-
-  // OPEN_SQUARE Item* CLOSE_SQUARE
   private static boolean Form_6(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Form_6")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, OPEN_SQUARE);
+    r = consumeToken(b, OPEN_PAREN);
     r = r && Form_6_1(b, l + 1);
-    r = r && consumeToken(b, CLOSE_SQUARE);
+    r = r && consumeToken(b, CLOSE_PAREN);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -113,6 +92,29 @@ public class RacketParser implements PsiParser, LightPsiParser {
       int c = current_position_(b);
       if (!Item(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Form_6_1", c)) break;
+    }
+    return true;
+  }
+
+  // OPEN_SQUARE Item* CLOSE_SQUARE
+  private static boolean Form_7(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Form_7")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, OPEN_SQUARE);
+    r = r && Form_7_1(b, l + 1);
+    r = r && consumeToken(b, CLOSE_SQUARE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // Item*
+  private static boolean Form_7_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Form_7_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!Item(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "Form_7_1", c)) break;
     }
     return true;
   }

@@ -102,7 +102,18 @@ sexp_comment="#;"
 
 <MAIN> {
  {racket_whitespace}+ { return TokenType.WHITE_SPACE; }
- {booleans} { return RacketTypes.CONSTANT; } // TODO check member of booleans (e.g. #flase should fail)
+ {booleans} {
+       if (yytext().equals("#true")
+           || yytext().equals("#false")
+           || yytext().equals("#t")
+           || yytext().equals("#f")
+           || yytext().equals("#T")
+           || yytext().equals("#F")) {
+           return RacketTypes.BOOLEAN;
+       } else {
+           return TokenType.ERROR_ELEMENT;
+       }
+      }
  {character} { return RacketTypes.CHARACTER; }
  {numbers} { return RacketTypes.NUMBER; }
 

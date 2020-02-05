@@ -20,6 +20,7 @@ Item ::= (Form | COMMENT | SEXP_COMMENT | CRLF)
 Form ::= Datum
        | CHARACTER
        | NUMBER
+       | BOOLEAN
        | STRING
        | IDENTIFIER
        | OPEN_PAREN Item* CLOSE_PAREN

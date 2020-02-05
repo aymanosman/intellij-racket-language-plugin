@@ -12,6 +12,7 @@ public interface RacketTypes {
   IElementType FORM = new RacketElementType("FORM");
   IElementType ITEM = new RacketElementType("ITEM");
 
+  IElementType BOOLEAN = new RacketTokenType("BOOLEAN");
   IElementType CHARACTER = new RacketTokenType("CHARACTER");
   IElementType CLOSE_PAREN = new RacketTokenType("CLOSE_PAREN");
   IElementType CLOSE_SQUARE = new RacketTokenType("CLOSE_SQUARE");

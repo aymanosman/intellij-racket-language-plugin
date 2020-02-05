@@ -18,6 +18,7 @@ public class RacketColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("String", RacketSyntaxHighlighter.STRING),
             new AttributesDescriptor("Constant", RacketSyntaxHighlighter.CONSTANT), // TODO this is confusing QUOTE?
             new AttributesDescriptor("Number", RacketSyntaxHighlighter.NUMBER),
+            new AttributesDescriptor("Boolean", RacketSyntaxHighlighter.BOOLEAN),
             new AttributesDescriptor("Parentheses", RacketSyntaxHighlighter.PARENTHESES),
     };
 
@@ -39,7 +40,7 @@ public class RacketColorSettingsPage implements ColorSettingsPage {
         return "#lang racket/base\n" +
                 ";; This is a comment\n" +
                 "()\n"+
-                "(define a-thing (list 42 \"hello world\" 'fixme))";
+                "(define a-thing (list 42 #t #f #true #false \"hello world\" #\"\\x00\" 'fixme))";
     }
 
     @Nullable
