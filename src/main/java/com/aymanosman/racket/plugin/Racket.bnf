@@ -11,7 +11,15 @@
   elementTypeHolderClass="com.aymanosman.racket.plugin.psi.RacketTypes"
   elementTypeClass="com.aymanosman.racket.plugin.psi.RacketElementType"
   tokenTypeClass="com.aymanosman.racket.plugin.psi.RacketTokenType"
+
+  psiImplUtilClass="com.aymanosman.racket.plugin.psi.impl.RacketPsiImplUtil"
 }
+
+//simpleFile ::= item_*
+  //
+  //private item_ ::= (property|COMMENT|CRLF)
+  //
+  //property ::= (KEY? SEPARATOR VALUE?) | KEY {methods=[getKey getValue]}
 
 RacketFile ::= HASH_LANG Item*
 
