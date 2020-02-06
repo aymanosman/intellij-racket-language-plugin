@@ -13,4 +13,8 @@ public interface RacketForm extends PsiElement {
   @NotNull
   List<RacketItem> getItemList();
 
+  String getKey();
+
+  String getValue();
+
 }

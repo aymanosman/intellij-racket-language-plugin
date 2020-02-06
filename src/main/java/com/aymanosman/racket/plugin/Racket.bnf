@@ -16,10 +16,8 @@
 }
 
 //simpleFile ::= item_*
-  //
-  //private item_ ::= (property|COMMENT|CRLF)
-  //
-  //property ::= (KEY? SEPARATOR VALUE?) | KEY {methods=[getKey getValue]}
+//private item_ ::= (property|COMMENT|CRLF)
+//property ::= (KEY? SEPARATOR VALUE?) | KEY {methods=[getKey getValue]}
 
 RacketFile ::= HASH_LANG Item*
 
@@ -35,6 +33,7 @@ Form ::= Datum
        | IDENTIFIER
        | OPEN_PAREN Item* CLOSE_PAREN
        | OPEN_SQUARE Item* CLOSE_SQUARE
+       {methods=[getKey getValue]}
 
 Datum ::= CONSTANT Form
         | UNQUOTE Form

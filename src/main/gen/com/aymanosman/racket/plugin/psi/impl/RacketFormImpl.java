@@ -38,4 +38,14 @@ public class RacketFormImpl extends ASTWrapperPsiElement implements RacketForm {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RacketItem.class);
   }
 
+  @Override
+  public String getKey() {
+    return RacketPsiImplUtil.getKey(this);
+  }
+
+  @Override
+  public String getValue() {
+    return RacketPsiImplUtil.getValue(this);
+  }
+
 }
