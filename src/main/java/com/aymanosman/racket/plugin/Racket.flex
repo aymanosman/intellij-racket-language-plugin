@@ -104,6 +104,20 @@ string_escape="\\\""
              | "\\" \R
 //bad_str=...
 
+special_numbers={n}{a}{n} ".0"
+               | {n}{a}{n} ".f"
+               | {i}{n}{f} ".0"
+               | {i}{n}{f} ".f"
+//special_extflonumns
+//exponent_marker
+//exponent_marker16
+//sign
+//exactness
+//radix2
+//radix8
+//radix10
+//radix16
+
 //script=...
 
 //identifier_delims=[\",'`()\[\]{};]|{racket_whitespace}
@@ -129,6 +143,8 @@ langline=("#lang " | "#!") ({langchar} | ({langchar} ({langchar} | "/")* {langch
 constant="'" | "`" | "#'" | "#`" | "#&"
 booleans=("#true"|"#false"|"#t"|"#f"|"#T"|"#F") [^\",'`()\[\]{};\\|\ \n\r\t\f]*
 numbers={INTEGER_LITERAL}
+        | "+" {special_numbers}
+        | "-" {special_numbers}
 sexp_comment="#;"
 dot="."
 unquote=","|",@"|"#,"|"#,@"
