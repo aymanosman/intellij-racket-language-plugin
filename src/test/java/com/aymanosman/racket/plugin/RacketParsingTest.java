@@ -16,8 +16,9 @@ public class RacketParsingTest extends ParsingTestCase {
     public void testParsingStrings() { doTest(true); }
     public void testParsingBytes() { doTest(true); }
     public void testParsingCharacters() { doTest(true); }
+//    public void testParsingCharactersError() { doTest(true); }
     public void testParsingNumbers() { doTest(true); }
-//    public void testParsingSpecialNumbers() { doTest(true); }
+    public void testParsingSpecialNumbers() { doTest(true); }
     public void testParsingBooleans() { doTest(true); }
     public void testParsingBooleansError() { doTest(true); }
 
