@@ -11,9 +11,9 @@ public class RacketAnnotatorTest extends BasePlatformTestCase {
   @Override
     protected String getTestDataPath() { return "testData"; }
 
-    public void testCompletion() {
-      myFixture.configureByFiles("AnnotatorTestData.java");
+    public void testAnnotation() {
+      myFixture.configureByFiles("AnnotatorTestData.rkt");
 
-      myFixture.checkHighlighting(false, false, true, true);
+      myFixture.checkHighlighting(false, true, true, false);
     }
 }

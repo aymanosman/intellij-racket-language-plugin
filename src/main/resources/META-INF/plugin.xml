@@ -23,7 +23,10 @@
         <lang.syntaxHighlighterFactory language="Racket"
                                        implementationClass="com.aymanosman.racket.plugin.RacketSyntaxHighlighterFactory" />
         <colorSettingsPage implementation="com.aymanosman.racket.plugin.RacketColorSettingsPage" />
-        <annotator language="JAVA" implementationClass="com.aymanosman.racket.plugin.RacketAnnotator" />
+        <annotator language="Racket"
+                   implementationClass="com.aymanosman.racket.plugin.RacketAnnotator" />
+        <completion.contributor language="Racket"
+                                implementationClass="com.aymanosman.racket.plugin.RacketCompletionContributor" />
     </extensions>
 
     <actions>

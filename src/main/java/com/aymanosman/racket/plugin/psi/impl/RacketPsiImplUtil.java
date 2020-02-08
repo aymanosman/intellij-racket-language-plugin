@@ -6,7 +6,7 @@ import com.intellij.lang.ASTNode;
 
 public class RacketPsiImplUtil {
     public static String getKey(RacketForm element) {
-        ASTNode keyNode = element.getNode().findChildByType(RacketTypes.DATUM);
+        ASTNode keyNode = element.getNode().findChildByType(RacketTypes.IDENTIFIER);
         if (keyNode != null) {
             // IMPORTANT: Convert embedded escaped spaces to simple spaces
             return keyNode.getText().replaceAll("\\\\ ", " ");
@@ -16,7 +16,7 @@ public class RacketPsiImplUtil {
     }
 
     public static String getValue(RacketForm element) {
-        ASTNode valueNode = element.getNode().findChildByType(RacketTypes.DATUM);
+        ASTNode valueNode = element.getNode().findChildByType(RacketTypes.IDENTIFIER);
         if (valueNode != null) {
             return valueNode.getText();
         } else {
