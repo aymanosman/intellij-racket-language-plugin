@@ -14,6 +14,7 @@ import java.util.Map;
 public class RacketColorSettingsPage implements ColorSettingsPage {
     public static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Identifier", RacketSyntaxHighlighter.IDENTIFIER),
+            new AttributesDescriptor("Keyword", RacketSyntaxHighlighter.KEYWORD),
             new AttributesDescriptor("Comment", RacketSyntaxHighlighter.COMMENT),
             new AttributesDescriptor("String", RacketSyntaxHighlighter.STRING),
             new AttributesDescriptor("Constant", RacketSyntaxHighlighter.CONSTANT), // TODO this is confusing QUOTE?
@@ -40,7 +41,8 @@ public class RacketColorSettingsPage implements ColorSettingsPage {
         return "#lang racket/base\n" +
                 ";; This is a comment\n" +
                 "()\n"+
-                "(define a-thing (list 42 #t #f #true #false \"hello world\" #\"\\x00\" 'fixme))";
+                "(define (a-thing a [b 3] #:c 8)\n" +
+                "  (list 42 #t #f #true #false \"hello world\" #\"\\x00\" 'fixme))";
     }
 
     @Nullable

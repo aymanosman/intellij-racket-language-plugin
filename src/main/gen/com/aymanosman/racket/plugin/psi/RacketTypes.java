@@ -22,6 +22,7 @@ public interface RacketTypes {
   IElementType DOT = new RacketTokenType("DOT");
   IElementType HASH_LANG = new RacketTokenType("HASH_LANG");
   IElementType IDENTIFIER = new RacketTokenType("IDENTIFIER");
+  IElementType KEYWORD = new RacketTokenType("KEYWORD");
   IElementType NUMBER = new RacketTokenType("NUMBER");
   IElementType OPEN_PAREN = new RacketTokenType("OPEN_PAREN");
   IElementType OPEN_SQUARE = new RacketTokenType("OPEN_SQUARE");

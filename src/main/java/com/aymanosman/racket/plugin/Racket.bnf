@@ -31,6 +31,7 @@ Form ::= Datum
        | BOOLEAN
        | STRING
        | IDENTIFIER
+       | KEYWORD
        | OPEN_PAREN Item* CLOSE_PAREN
        | OPEN_SQUARE Item* CLOSE_SQUARE
        {methods=[getKey getValue]}

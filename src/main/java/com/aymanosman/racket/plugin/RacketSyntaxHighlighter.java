@@ -11,6 +11,8 @@ import org.jetbrains.annotations.NotNull;
 public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey IDENTIFIER =
             TextAttributesKey.createTextAttributesKey("RACKET_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
+    public static final TextAttributesKey KEYWORD =
+            TextAttributesKey.createTextAttributesKey("RACKET_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey STRING =
             TextAttributesKey.createTextAttributesKey("RACKET_STRING", DefaultLanguageHighlighterColors.STRING);
     public static final TextAttributesKey CONSTANT =
@@ -27,6 +29,7 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
             TextAttributesKey.createTextAttributesKey("RACKET_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
 
     public static final TextAttributesKey[] IDENTIFIER_KEYS = new TextAttributesKey[]{IDENTIFIER};
+    public static final TextAttributesKey[] KEYWORD_KEYS = new TextAttributesKey[]{KEYWORD};
     public static final TextAttributesKey[] STRING_KEYS = new TextAttributesKey[]{STRING};
     public static final TextAttributesKey[] CONSTANT_KEYS = new TextAttributesKey[]{CONSTANT};
     public static final TextAttributesKey[] NUMBER_KEYS = new TextAttributesKey[]{NUMBER};
@@ -47,6 +50,8 @@ public class RacketSyntaxHighlighter extends SyntaxHighlighterBase {
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
         if (tokenType.equals(RacketTypes.IDENTIFIER)) {
             return IDENTIFIER_KEYS;
+        } else if (tokenType.equals(RacketTypes.KEYWORD)) {
+            return KEYWORD_KEYS;
         } else if (tokenType.equals(RacketTypes.STRING)) {
             return STRING_KEYS;
         } else if (tokenType.equals(RacketTypes.CONSTANT)) {

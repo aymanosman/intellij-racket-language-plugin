@@ -126,7 +126,7 @@ identifier_escapes=("\\" {any_char}) | ("|" ~"|")
 identifier_start={identifier_escapes} | [^\",'`()\[\]{};\\|\ \n\r\t\f#] | "#%"
 identifier={identifier_start} ({identifier_escapes} | {identifier_chars})*
 
-keyword="#:" ({identifier_escapes}|{identifier_chars})*
+keyword="#:" ({identifier_escapes} | {identifier_chars})*
 
 list_prefix=""|"#hash"|"#hasheq"|"#hasheqv"|"#s"| "#" {digit10}*
 
@@ -175,7 +175,7 @@ unquote=","|",@"|"#,"|"#,@"
  {character} { return RacketTypes.CHARACTER; }
  {numbers} { return RacketTypes.NUMBER; }
 
- // keyword
+ {keyword} { return RacketTypes.KEYWORD; }
  {str} { return RacketTypes.STRING; }
  {line_comment} { return RacketTypes.COMMENT; }
  {sexp_comment} { return RacketTypes.SEXP_COMMENT; }

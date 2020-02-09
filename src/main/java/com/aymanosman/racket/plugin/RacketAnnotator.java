@@ -16,7 +16,28 @@ import java.util.Set;
 
 public class RacketAnnotator implements Annotator {
     static private final Set<String> KEYWORDS
-            = new HashSet<>(Arrays.asList("define", "list"));
+            = new HashSet<>(Arrays.asList(
+            "define",
+            "provide",
+            "require",
+            "syntax-rules",
+            "define-syntax-rule",
+            "and",
+            "or",
+            "unless",
+            "if",
+            "append",
+            "not",
+            "values",
+            "struct",
+            "list",
+            "set!",
+            "for",
+            "let",
+            "let*",
+            "let-values",
+            "let*-values",
+            "when"));
 
     @Override
     public void annotate(@NotNull final PsiElement element, @NotNull AnnotationHolder holder) {
