@@ -19,6 +19,8 @@ public class RacketAnnotator implements Annotator {
             = new HashSet<>(Arrays.asList(
             "define",
             "case",
+            "do",
+            "parameterize",
             "with-handlers",
             "provide",
             "require",
