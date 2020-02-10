@@ -104,19 +104,17 @@ string_escape="\\\""
              | "\\" \R
 //bad_str=...
 
-special_numbers={n}{a}{n} ".0"
-               | {n}{a}{n} ".f"
-               | {i}{n}{f} ".0"
-               | {i}{n}{f} ".f"
-//special_extflonumns
-//exponent_marker
-//exponent_marker16
-//sign
-//exactness
-//radix2
-//radix8
-//radix10
-//radix16
+special_numbers={n}{a}{n} ".0" | {n}{a}{n} ".f"
+               | {i}{n}{f} ".0" | {i}{n}{f} ".f"
+special_extflonums= {n}{a}{n}".t" | {i}{n}{f}".t"
+exponent_marker={e} | {s} | {f} | {d} | {l}
+exponent_marker16={s} | {l}
+sign=[+-]
+exactness="#i" | "#e" | "#I" | "#E"
+radix2="#b" | "#B"
+radix8="#o" | "#O"
+radix10="#d" | "#D"
+radix16="#x" | "#X"
 
 //script=...
 
@@ -133,16 +131,11 @@ list_prefix=""|"#hash"|"#hasheq"|"#hasheqv"|"#s"| "#" {digit10}*
 line_comment=";".*
 
 //---
-DIGIT={digit}
-DIGITS = {DIGIT}*
-INTEGER_LITERAL = {DIGITS}
-
-
-//---
 langline=("#lang " | "#!") ({langchar} | ({langchar} ({langchar} | "/")* {langchar}))
 constant="'" | "`" | "#'" | "#`" | "#&"
 booleans=("#true"|"#false"|"#t"|"#f"|"#T"|"#F") [^\",'`()\[\]{};\\|\ \n\r\t\f]*
-numbers={INTEGER_LITERAL}
+numbers={digit10}*
+        |{radix16} {digit16}*
         | "+" {special_numbers}
         | "-" {special_numbers}
 sexp_comment="#;"
