@@ -21,6 +21,8 @@ public class RacketParsingTest extends ParsingTestCase {
     public void testParsingSpecialNumbers() { doTest(true); }
     public void testParsingBooleans() { doTest(true); }
     public void testParsingBooleansError() { doTest(true); }
+    public void testParsingLineComments() { doTest(true); }
+    public void testParsingBlockComments() { doTest(true); }
 
     @Override
     protected String getTestDataPath() {

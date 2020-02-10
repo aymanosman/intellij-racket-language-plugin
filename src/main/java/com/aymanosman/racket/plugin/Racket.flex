@@ -15,11 +15,11 @@ import com.intellij.psi.TokenType;
 %eof{  return;
 %eof}
 
-// =
+//---
 CRLF=\R
 WHITE_SPACE=[\ \n\r\t\f]
 
-// =
+//---
 any_char=.
 
 a=[aA]
@@ -49,7 +49,7 @@ x=[xX]
 y=[yY]
 z=[zZ]
 
-// =
+//---
 digit=[0-9]
 digit2=[0-1]
 digit8=[0-7]
@@ -132,13 +132,13 @@ list_prefix=""|"#hash"|"#hasheq"|"#hasheqv"|"#s"| "#" {digit10}*
 
 line_comment=";".*
 
-// =
+//---
 DIGIT={digit}
 DIGITS = {DIGIT}*
 INTEGER_LITERAL = {DIGITS}
 
 
-// =
+//---
 langline=("#lang " | "#!") ({langchar} | ({langchar} ({langchar} | "/")* {langchar}))
 constant="'" | "`" | "#'" | "#`" | "#&"
 booleans=("#true"|"#false"|"#t"|"#f"|"#T"|"#F") [^\",'`()\[\]{};\\|\ \n\r\t\f]*
@@ -148,6 +148,9 @@ numbers={INTEGER_LITERAL}
 sexp_comment="#;"
 dot="."
 unquote=","|",@"|"#,"|"#,@"
+
+// ---
+block_comment="#|" ~"|#"
 
 %state MAIN
 
@@ -182,7 +185,7 @@ unquote=","|",@"|"#,"|"#,@"
  {str} { return RacketTypes.STRING; }
  {line_comment} { return RacketTypes.COMMENT; }
  {sexp_comment} { return RacketTypes.SEXP_COMMENT; }
- // #|
+ {block_comment} { return RacketTypes.COMMENT; }
  // script
 
 
