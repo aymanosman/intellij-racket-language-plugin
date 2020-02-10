@@ -18,6 +18,17 @@ public class RacketAnnotator implements Annotator {
     static private final Set<String> KEYWORDS
             = new HashSet<>(Arrays.asList(
             "define",
+            "class",
+            "object%",
+            "define/public",
+            "null?",
+            "eq?",
+            "add1",
+            "equal?",
+            "define-values",
+            "cond",
+            "else",
+            "define-struct",
             "case",
             "do",
             "parameterize",
