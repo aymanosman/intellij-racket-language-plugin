@@ -153,7 +153,10 @@ unquote=","|",@"|"#,"|"#,@"
 
 %%
 
-<YYINITIAL> {langline} { yybegin(MAIN); return RacketTypes.HASH_LANG; }
+<YYINITIAL> {
+  {racket_whitespace}+ { return TokenType.WHITE_SPACE; }
+  {langline} { yybegin(MAIN); return RacketTypes.HASH_LANG; }
+}
 
 <MAIN> {
  {racket_whitespace}+ { return TokenType.WHITE_SPACE; }

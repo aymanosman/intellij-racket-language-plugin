@@ -25,8 +25,8 @@
         <colorSettingsPage implementation="com.aymanosman.racket.plugin.RacketColorSettingsPage" />
         <annotator language="Racket"
                    implementationClass="com.aymanosman.racket.plugin.RacketAnnotator" />
-        <completion.contributor language="Racket"
-                                implementationClass="com.aymanosman.racket.plugin.RacketCompletionContributor" />
+<!--        <completion.contributor language="Racket"-->
+<!--                                implementationClass="com.aymanosman.racket.plugin.RacketCompletionContributor" />-->
     </extensions>
 
     <actions>
