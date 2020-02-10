@@ -21,7 +21,6 @@
 
 RacketFile ::= HASH_LANG Item*
 
-// TODO Push non list Forms into Item
 Item ::= (Form | COMMENT | SEXP_COMMENT | CRLF)
 
 Form ::= Datum
@@ -34,6 +33,7 @@ Form ::= Datum
        | KEYWORD
        | OPEN_PAREN Item* CLOSE_PAREN
        | OPEN_SQUARE Item* CLOSE_SQUARE
+       // | OPEN_BRACE Item* CLOSE_BRACE
        {methods=[getKey getValue]}
 
 Datum ::= CONSTANT Form
