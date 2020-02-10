@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RacketForm extends PsiElement {
+public interface RacketForm extends RacketNamedElement {
 
   @Nullable
   RacketDatum getDatum();
@@ -16,5 +16,11 @@ public interface RacketForm extends PsiElement {
   String getKey();
 
   String getValue();
+
+  String getName();
+
+  PsiElement setName(String newName);
+
+  PsiElement getNameIdentifier();
 
 }

@@ -1,6 +1,6 @@
 package com.aymanosman.racket.plugin;
 
-import com.aymanosman.racket.plugin.psi.RacketForm;
+import com.aymanosman.racket.plugin.psi.RacketItem;
 import com.aymanosman.racket.plugin.psi.RacketFile;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -15,21 +15,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class RacketUtil {
-    public static List<RacketForm> findProperties(Project project, String key) {
-        List<RacketForm> result = null;
+    public static List<RacketItem> findItems(Project project, String ident) {
+        List<RacketItem> result = null;
         Collection<VirtualFile> virtualFiles =
                 FileTypeIndex.getFiles(RacketFileType.INSTANCE, GlobalSearchScope.allScope((project)));
         for (VirtualFile virtualFile : virtualFiles) {
             RacketFile racketFile = (RacketFile) PsiManager.getInstance(project).findFile(virtualFile);
             if (racketFile != null) {
-                RacketForm[] properties = PsiTreeUtil.getChildrenOfType(racketFile, RacketForm.class);
-                if (properties != null) {
-                    for (RacketForm property : properties) {
-                        if (key.equals(property.getKey())) {
+                RacketItem[] forms = PsiTreeUtil.getChildrenOfType(racketFile, RacketItem.class);
+                if (forms != null) {
+                    for (RacketItem form : forms) {
+                        if (ident.equals(form.getText())) { // TODO was getKey
                             if (result == null) {
                                 result = new ArrayList<>();
                             }
-                            result.add(property);
+                            result.add(form);
                         }
                     }
                 }
@@ -38,16 +38,16 @@ public class RacketUtil {
         return result != null ? result : Collections.emptyList();
     }
 
-    public static List<RacketForm> findProperties(Project project) {
-        List<RacketForm> result = new ArrayList<>();
+    public static List<RacketItem> findItems(Project project) {
+        List<RacketItem> result = new ArrayList<>();
         Collection<VirtualFile> virtualFiles =
                 FileTypeIndex.getFiles(RacketFileType.INSTANCE, GlobalSearchScope.allScope(project));
         for (VirtualFile virtualFile : virtualFiles) {
             RacketFile simpleFile = (RacketFile) PsiManager.getInstance(project).findFile(virtualFile);
             if (simpleFile != null) {
-                RacketForm[] properties = PsiTreeUtil.getChildrenOfType(simpleFile, RacketForm.class);
-                if (properties != null) {
-                    Collections.addAll(result, properties);
+                RacketItem[] forms = PsiTreeUtil.getChildrenOfType(simpleFile, RacketItem.class);
+                if (forms != null) {
+                    Collections.addAll(result, forms);
                 }
             }
         }

@@ -34,7 +34,9 @@ Form ::= Datum
        | OPEN_PAREN Item* CLOSE_PAREN
        | OPEN_SQUARE Item* CLOSE_SQUARE
        // | OPEN_BRACE Item* CLOSE_BRACE
-       {methods=[getKey getValue]}
+       {mixin="com.aymanosman.racket.plugin.psi.impl.RacketNamedElementImpl"
+       implements="com.aymanosman.racket.plugin.psi.RacketNamedElement"
+       methods=[getKey getValue getName setName getNameIdentifier]}
 
 Datum ::= CONSTANT Form
         | UNQUOTE Form

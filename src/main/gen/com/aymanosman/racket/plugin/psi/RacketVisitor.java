@@ -12,10 +12,14 @@ public class RacketVisitor extends PsiElementVisitor {
   }
 
   public void visitForm(@NotNull RacketForm o) {
-    visitPsiElement(o);
+    visitNamedElement(o);
   }
 
   public void visitItem(@NotNull RacketItem o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNamedElement(@NotNull RacketNamedElement o) {
     visitPsiElement(o);
   }
 

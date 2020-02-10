@@ -8,10 +8,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.aymanosman.racket.plugin.psi.RacketTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.aymanosman.racket.plugin.psi.*;
 
-public class RacketFormImpl extends ASTWrapperPsiElement implements RacketForm {
+public class RacketFormImpl extends RacketNamedElementImpl implements RacketForm {
 
   public RacketFormImpl(@NotNull ASTNode node) {
     super(node);
@@ -46,6 +45,21 @@ public class RacketFormImpl extends ASTWrapperPsiElement implements RacketForm {
   @Override
   public String getValue() {
     return RacketPsiImplUtil.getValue(this);
+  }
+
+  @Override
+  public String getName() {
+    return RacketPsiImplUtil.getName(this);
+  }
+
+  @Override
+  public PsiElement setName(String newName) {
+    return RacketPsiImplUtil.setName(this, newName);
+  }
+
+  @Override
+  public PsiElement getNameIdentifier() {
+    return RacketPsiImplUtil.getNameIdentifier(this);
   }
 
 }
