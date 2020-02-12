@@ -1,6 +1,5 @@
 package com.aymanosman.racket.plugin;
 
-import com.aymanosman.racket.plugin.psi.RacketForm;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.patterns.PsiJavaPatterns;
 import com.intellij.psi.*;
@@ -21,6 +20,8 @@ public class RacketReferenceContributor extends PsiReferenceContributor {
                         String value = literalExpression.getValue() instanceof String ?
                                 (String) literalExpression.getValue() : null;
                         if (value != null && value.startsWith("simple" + ":")) {
+                            System.out.println("xxx 1" + value.toString());
+                            System.out.println(element.getText());
                             return new PsiReference[]{
                                     new RacketReference(element, new TextRange(8, value.length() + 1))};
                         }
