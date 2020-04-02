@@ -134,8 +134,9 @@ line_comment=";".*
 langline=("#lang " | "#!") ({langchar} | ({langchar} ({langchar} | "/")* {langchar}))
 constant="'" | "`" | "#'" | "#`" | "#&"
 booleans=("#true"|"#false"|"#t"|"#f"|"#T"|"#F") [^\",'`()\[\]{};\\|\ \n\r\t\f]*
-numbers={digit10}*
-        |{radix16} {digit16}*
+numbers = {digit10}*
+        | {radix16} {digit16}*
+        | {radix2} {digit2}*
         | "+" {special_numbers}
         | "-" {special_numbers}
 sexp_comment="#;"
