@@ -18,6 +18,17 @@ public class RacketAnnotator implements Annotator {
     static private final Set<String> KEYWORDS
             = new HashSet<>(Arrays.asList(
             "define",
+            "raise-argument-error",
+            "make-parameter",
+            "lambda",
+            "module+",
+            "printf",
+            "loop",
+            "for/list",
+            "match",
+            "cons",
+            "list*",
+            "define/contract",
             "class",
             "object%",
             "define/public",
@@ -59,15 +70,23 @@ public class RacketAnnotator implements Annotator {
         if (element instanceof LeafPsiElement) {
             LeafPsiElement leaf = (LeafPsiElement) element;
             if (leaf.getElementType() == RacketTypes.HASH_LANG) {
-                TextRange hashLangRange = new TextRange(leaf.getStartOffset(), leaf.getStartOffset() + 5);
-                Annotation annotation = holder.createInfoAnnotation(hashLangRange, null);
-                annotation.setTextAttributes(DefaultLanguageHighlighterColors.KEYWORD);
+                annotate_hash_lang(holder, leaf);
             } else if (leaf.getElementType() == RacketTypes.IDENTIFIER) {
                 if (KEYWORDS.contains(leaf.getText())) {
-                    Annotation annotation = holder.createInfoAnnotation(element, null);
-                    annotation.setTextAttributes(DefaultLanguageHighlighterColors.KEYWORD);
+                    annotate_keyword(element, holder);
                 }
             }
         }
+    }
+
+    private void annotate_keyword(@NotNull PsiElement element, @NotNull AnnotationHolder holder) {
+        Annotation annotation = holder.createInfoAnnotation(element, null);
+        annotation.setTextAttributes(DefaultLanguageHighlighterColors.KEYWORD);
+    }
+
+    private void annotate_hash_lang(@NotNull AnnotationHolder holder, LeafPsiElement leaf) {
+        TextRange hashLangRange = new TextRange(leaf.getStartOffset(), leaf.getStartOffset() + 5);
+        Annotation annotation = holder.createInfoAnnotation(hashLangRange, null);
+        annotation.setTextAttributes(DefaultLanguageHighlighterColors.KEYWORD);
     }
 }
