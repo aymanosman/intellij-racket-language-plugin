@@ -37,29 +37,4 @@ public class RacketFormImpl extends RacketNamedElementImpl implements RacketForm
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RacketItem.class);
   }
 
-  @Override
-  public String getKey() {
-    return RacketPsiImplUtil.getKey(this);
-  }
-
-  @Override
-  public String getValue() {
-    return RacketPsiImplUtil.getValue(this);
-  }
-
-  @Override
-  public String getName() {
-    return RacketPsiImplUtil.getName(this);
-  }
-
-  @Override
-  public PsiElement setName(String newName) {
-    return RacketPsiImplUtil.setName(this, newName);
-  }
-
-  @Override
-  public PsiElement getNameIdentifier() {
-    return RacketPsiImplUtil.getNameIdentifier(this);
-  }
-
 }
