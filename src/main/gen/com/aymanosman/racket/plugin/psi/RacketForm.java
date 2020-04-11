@@ -13,24 +13,14 @@ public interface RacketForm extends RacketNamedElement {
   @NotNull
   List<RacketItem> getItemList();
 
-  //WARNING: getKey(...) is skipped
-  //matching getKey(RacketForm, ...)
-  //methods are not found in RacketPsiImplUtil
+  String getKey();
 
-  //WARNING: getValue(...) is skipped
-  //matching getValue(RacketForm, ...)
-  //methods are not found in RacketPsiImplUtil
+  String getValue();
 
-  //WARNING: getName(...) is skipped
-  //matching getName(RacketForm, ...)
-  //methods are not found in RacketPsiImplUtil
+  String getName();
 
-  //WARNING: setName(...) is skipped
-  //matching setName(RacketForm, ...)
-  //methods are not found in RacketPsiImplUtil
+  PsiElement setName(String newName);
 
-  //WARNING: getNameIdentifier(...) is skipped
-  //matching getNameIdentifier(RacketForm, ...)
-  //methods are not found in RacketPsiImplUtil
+  PsiElement getNameIdentifier();
 
 }

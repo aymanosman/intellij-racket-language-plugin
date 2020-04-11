@@ -11,6 +11,5 @@ public class RacketAnnotatorTest extends LightJavaCodeInsightFixtureTestCase {
     public void testAnnotation() {
         myFixture.configureByFiles("annotator-test-data.rkt");
 
-//        myFixture.checkHighlighting(true, true, true, false);
-        myFixture.checkHighlighting(false, false, true, true);    }
+        myFixture.checkHighlighting(false, true, true, true);    }
 }
