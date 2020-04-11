@@ -27,7 +27,7 @@ public class RacketParsingTest extends ParsingTestCase {
 
     @Override
     protected String getTestDataPath() {
-        return "testData";
+        return "src/test/testData";
     }
 
     @Override

@@ -1,19 +1,16 @@
 package com.aymanosman.racket.plugin;
 
-import com.intellij.testFramework.fixtures.BasePlatformTestCase;
+import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase;
 
-public class RacketAnnotatorTest extends BasePlatformTestCase {
-  @Override
-  protected void setUp() throws Exception {
-      super.setUp();
-  }
-
-  @Override
-    protected String getTestDataPath() { return "testData"; }
+public class RacketAnnotatorTest extends LightJavaCodeInsightFixtureTestCase {
+    @Override
+    protected String getTestDataPath() {
+        return "src/test/testData";
+    }
 
     public void testAnnotation() {
-      myFixture.configureByFiles("AnnotatorTestData.rkt");
+        myFixture.configureByFiles("annotator-test-data.rkt");
 
-      myFixture.checkHighlighting(false, true, true, false);
-    }
+//        myFixture.checkHighlighting(true, true, true, false);
+        myFixture.checkHighlighting(false, false, true, true);    }
 }
