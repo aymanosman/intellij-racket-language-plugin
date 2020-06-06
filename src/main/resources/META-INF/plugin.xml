@@ -1,31 +1,35 @@
 <idea-plugin>
-    <id>org.example.intellij-racket-language-plugin</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <id>org.racket.aymanosman</id>
+    <name>Racket</name>
+    <vendor url="https://github.com/aymanosman">Ayman Osman</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    Provides support for the <a href="https://racket-lang.org/">Racket</a> programming language.<br>
+
+    Features:<br>
+      <ul>
+          <li>Syntax Highlighting</li>
+      </ul>
     ]]></description>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
-    <!--    <depends>com.intellij.modules.platform</depends>-->
-    <depends>com.intellij.modules.java</depends>
-
     <extensions defaultExtensionNs="com.intellij">
-        <fileType name="Racket file"
-                  implementationClass="com.aymanosman.racket.plugin.RacketFileType"
-                  fieldName="INSTANCE"
-                  language="Racket"
-                  extensions="rkt"/>
-        <lang.parserDefinition language="Racket"
-                               implementationClass="com.aymanosman.racket.plugin.RacketParserDefinition"/>
-        <lang.syntaxHighlighterFactory language="Racket"
-                                       implementationClass="com.aymanosman.racket.plugin.RacketSyntaxHighlighterFactory"/>
-        <colorSettingsPage implementation="com.aymanosman.racket.plugin.RacketColorSettingsPage"/>
-        <annotator language="Racket"
-                   implementationClass="com.aymanosman.racket.plugin.RacketAnnotator"/>
+        <fileType
+                name="Racket file"
+                implementationClass="org.racket.lang.core.parser.RacketFileType"
+                fieldName="INSTANCE"
+                language="Racket"
+                extensions="rkt"/>
+        <lang.parserDefinition
+                language="Racket"
+                implementationClass="org.racket.lang.core.parser.RacketParserDefinition"/>
+        <lang.syntaxHighlighterFactory
+                language="Racket"
+                implementationClass="org.racket.lang.core.parser.RacketSyntaxHighlighterFactory"/>
+        <colorSettingsPage
+                implementation="org.racket.lang.core.parser.RacketColorSettingsPage"/>
+        <annotator
+                language="Racket"
+                implementationClass="org.racket.ide.highlight.RacketSyntaxHighlightAnnotator"/>
     </extensions>
 
     <actions>
