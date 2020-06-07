@@ -1,16 +1,21 @@
 // This is a generated file. Not intended for manual editing.
 package org.racket.lang.core.psi;
 
-import com.intellij.psi.tree.IElementType;
-import com.intellij.psi.PsiElement;
 import com.intellij.lang.ASTNode;
-import org.racket.lang.core.psi.impl.*;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.tree.IElementType;
+import org.racket.lang.core.psi.impl.RacketDatumImpl;
+import org.racket.lang.core.psi.impl.RacketFormImpl;
+import org.racket.lang.core.psi.impl.RacketHashLangLineImpl;
+import org.racket.lang.core.psi.impl.RacketItemImpl;
+import org.racket.lang.core.stubs.StubImplementationsKt;
 
 public interface RacketTypes {
 
   IElementType DATUM = new RacketElementType("DATUM");
-  IElementType FORM = new RacketElementType("FORM");
-  IElementType ITEM = new RacketElementType("ITEM");
+    IElementType FORM = new RacketElementType("FORM");
+    IElementType HASH_LANG_LINE = StubImplementationsKt.factory("HASH_LANG_LINE");
+    IElementType ITEM = new RacketElementType("ITEM");
 
   IElementType BOOLEAN = new RacketTokenType("BOOLEAN");
   IElementType CHARACTER = new RacketTokenType("CHARACTER");
@@ -37,10 +42,11 @@ public interface RacketTypes {
         return new RacketDatumImpl(node);
       }
       else if (type == FORM) {
-        return new RacketFormImpl(node);
-      }
-      else if (type == ITEM) {
-        return new RacketItemImpl(node);
+          return new RacketFormImpl(node);
+      } else if (type == HASH_LANG_LINE) {
+          return new RacketHashLangLineImpl(node);
+      } else if (type == ITEM) {
+          return new RacketItemImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

@@ -1,7 +1,9 @@
 {
   parserClass="org.racket.lang.core.parser.RacketParser"
 
-  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+  implements="org.racket.lang.core.psi.RacketElement"
+  extends='org.racket.lang.core.psi.RacketElementImpl'
+//  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
   psiClassPrefix="Racket"
   psiImplClassSuffix="Impl"
@@ -13,9 +15,23 @@
   tokenTypeClass="org.racket.lang.core.psi.RacketTokenType"
 
   psiImplUtilClass="org.racket.lang.core.psi.impl.RacketPsiImplUtil"
+
+  elementTypeFactory("HashLangLine")="org.racket.lang.core.stubs.StubImplementationsKt.factory"
 }
 
-RacketFile ::= HASH_LANG Item*
+RacketFile ::= HashLangLine Item*
+
+HashLangLine ::= HASH_LANG {
+  stubClass = "org.racket.lang.core.stubs.RacketHashLangLineStub"
+  elementTypeFactory = "org.racket.lang.core.stubs.StubImplementationsKt.factory"
+}
+
+//InnerAttr ::= '#' '!' '[' AttrUpper {
+//  implements = [ "org.rust.lang.core.psi.ext.RsAttr" ]
+//  extends = "org.rust.lang.core.psi.ext.RsStubbedElementImpl<?>"
+//  stubClass = "org.rust.lang.core.stubs.RsInnerAttrStub"
+//  elementTypeFactory = "org.rust.lang.core.stubs.StubImplementationsKt.factory"
+//}
 
 Item ::= (Form | COMMENT | SEXP_COMMENT | CRLF)
 

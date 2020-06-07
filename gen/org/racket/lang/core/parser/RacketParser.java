@@ -1,15 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package org.racket.lang.core.parser;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
-import static org.racket.lang.core.psi.RacketTypes.*;
-import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
-import com.intellij.psi.tree.IElementType;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.tree.TokenSet;
 import com.intellij.lang.PsiParser;
-import com.intellij.lang.LightPsiParser;
+import com.intellij.psi.tree.IElementType;
+
+import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
+import static org.racket.lang.core.psi.RacketTypes.*;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class RacketParser implements PsiParser, LightPsiParser {
@@ -147,6 +147,18 @@ public class RacketParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // HASH_LANG
+  public static boolean HashLangLine(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "HashLangLine")) return false;
+    if (!nextTokenIs(builder_, HASH_LANG)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, HASH_LANG);
+    exit_section_(builder_, marker_, HASH_LANG_LINE, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // Form | COMMENT | SEXP_COMMENT | CRLF
   public static boolean Item(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "Item")) return false;
@@ -161,13 +173,13 @@ public class RacketParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // HASH_LANG Item*
+  // HashLangLine Item*
   static boolean RacketFile(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "RacketFile")) return false;
     if (!nextTokenIs(builder_, HASH_LANG)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, HASH_LANG);
+    result_ = HashLangLine(builder_, level_ + 1);
     result_ = result_ && RacketFile_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
