@@ -2,29 +2,29 @@
   parserClass="org.racket.lang.core.parser.RacketParser"
 
   implements="org.racket.lang.core.psi.RacketElement"
-  extends='org.racket.lang.core.psi.RacketElementImpl'
-//  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+//  extends="com.intellij.extapi.psi.RacketElementImpl"
+
+  elementTypeHolderClass="org.racket.lang.core.psi.RacketElementTypes"
+
+  elementTypeClass="org.racket.lang.core.psi.RacketElementType"
+  tokenTypeClass="org.racket.lang.core.psi.RacketTokenType"
 
   psiClassPrefix="Racket"
   psiImplClassSuffix="Impl"
   psiPackage="org.racket.lang.core.psi"
   psiImplPackage="org.racket.lang.core.psi.impl"
-
-  elementTypeHolderClass="org.racket.lang.core.psi.RacketTypes"
-  elementTypeClass="org.racket.lang.core.psi.RacketElementType"
-  tokenTypeClass="org.racket.lang.core.psi.RacketTokenType"
-
   psiImplUtilClass="org.racket.lang.core.psi.impl.RacketPsiImplUtil"
 
-  elementTypeFactory("HashLangLine")="org.racket.lang.core.stubs.StubImplementationsKt.factory"
+//  elementTypeFactory("HashLangLine")="org.racket.lang.core.stubs.StubImplementationsKt.factory"
 }
 
-RacketFile ::= HashLangLine Item*
+RacketFile ::= HASH_LANG Item*
 
-HashLangLine ::= HASH_LANG {
-  stubClass = "org.racket.lang.core.stubs.RacketHashLangLineStub"
-  elementTypeFactory = "org.racket.lang.core.stubs.StubImplementationsKt.factory"
-}
+//HashLangLine ::= HASH_LANG {
+//  stubClass = "org.racket.lang.core.stubs.RacketHashLangLineStub"
+//  elementTypeFactory = "org.racket.lang.core.stubs.StubImplementationsKt.factory"
+//}
 
 //InnerAttr ::= '#' '!' '[' AttrUpper {
 //  implements = [ "org.rust.lang.core.psi.ext.RsAttr" ]

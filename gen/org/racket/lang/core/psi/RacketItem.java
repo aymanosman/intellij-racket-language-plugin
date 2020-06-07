@@ -1,11 +1,13 @@
 // This is a generated file. Not intended for manual editing.
 package org.racket.lang.core.psi;
 
-import org.jetbrains.annotations.Nullable;
+import java.util.List;
+import org.jetbrains.annotations.*;
+import com.intellij.psi.PsiElement;
 
 public interface RacketItem extends RacketElement {
 
-    @Nullable
-    RacketForm getForm();
+  @Nullable
+  RacketForm getForm();
 
 }

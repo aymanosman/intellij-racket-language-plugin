@@ -1,19 +1,19 @@
 // This is a generated file. Not intended for manual editing.
 package org.racket.lang.core.psi.impl;
 
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.racket.lang.core.psi.RacketElementImpl;
-import org.racket.lang.core.psi.RacketForm;
-import org.racket.lang.core.psi.RacketItem;
-import org.racket.lang.core.psi.RacketVisitor;
+import static org.racket.lang.core.psi.RacketElementTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import org.racket.lang.core.psi.*;
 
-public class RacketItemImpl extends RacketElementImpl implements RacketItem {
+public class RacketItemImpl extends ASTWrapperPsiElement implements RacketItem {
 
-  public RacketItemImpl(ASTNode node) {
+  public RacketItemImpl(@NotNull ASTNode node) {
     super(node);
   }
 
@@ -29,7 +29,7 @@ public class RacketItemImpl extends RacketElementImpl implements RacketItem {
   @Override
   @Nullable
   public RacketForm getForm() {
-    return PsiTreeUtil.getChildOfType(this, RacketForm.class);
+    return findChildByClass(RacketForm.class);
   }
 
 }
